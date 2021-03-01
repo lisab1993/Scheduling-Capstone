@@ -2,21 +2,21 @@
 Assist
 
 # Core functions:
-* daily calendar
-* event planner
-* user system
+* Daily Calendar
+* Event Planner
+* User System
 
 
 # Daily Calendar:
-* view all days in a standard calendar view
-* event name and time will be visible
-* calendar will come from vuetify
+* View all days in a standard calendar view
+* Event name and time will be visible
+* Calendar will come from vuetify
 
 
 # Event Planner:
-* structured like a to do list
-* user database will be included
-* clicking on "My Events" will show a list of events by name, ordered by their due date. 
+* Structured like a to do list
+* User database will be included
+* Clicking on "My Events" will show a list of events by name, ordered by their due date. 
 
 * An event is the many, and the items are the one. 
 * An event would be grocery shopping
@@ -45,33 +45,33 @@ with models and then update this)
 
 # Pages:
 ## login screen:
-    *able to log in or sign up here.
+* The user is able to log in or sign up here.
 
 ## Calendar
-    *this will be treated like a home page
-    * when the user logs in, they will come straight here
-    * a vuetify calendar will be here for everyday use.
+* This will be treated like a home page
+* When the user logs in, they will come straight here
+* A vuetify calendar will be here for everyday use.
     
 ## My Events
-    * a list of all events will be here
-    * from here, we can add, edit, or delete events
-    * events can be expanded using a collapsable
-    * when expanded, we can view and edit the due date and completion status
-    * when expanded, we can see all of the pictures for the event, with a
-    caption underneath stating which item it belongs to
-    * there will be a clear button leading to the detail page
+* A list of all events will be here
+* From here, we can add, edit, or delete events
+* Events can be expanded using a collapsable
+* When expanded, we can view and edit the due date and completion status
+* When expanded, we can see all of the pictures for the event, with a
+caption underneath stating which item it belongs to
+* There will be a clear button leading to the detail page
 
 ## Event Detail Page
-    * at the top of the detail, we can manage the completion status, as well as the due date
-    * we can also add a note, mark the item as complete, delete it,
-    or manage pictures for the event 
-    * Going to manage pictures will allow
-    the user to add pictures as well
+* At the top of the detail, we can manage the completion status,as well as the due date
+* We can also add a note, mark the item as complete, delete it,
+or manage pictures for the event 
+* Going to manage pictures will allow
+the user to add pictures as well
 
 ## Help Page: 
-    * the help page will have a small tutorial on how to use this site 
-    * Ideally, those with basic computer skills will be able to use this 
-    site, so the tutorial will be aimed at those who aren't comfortable
+* The help page will have a small tutorial on how to use this site 
+* Ideally, those with basic computer skills will be able to use this 
+site, so the tutorial will be aimed at those who aren't comfortable
     
 
 
