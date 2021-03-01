@@ -20,6 +20,9 @@
 ## Models:
 
 
+## Priority
+* urgency (CharField)
+
 ### Event
 
 * title (CharField)
@@ -32,7 +35,6 @@
 * name (CharField)
 * event (ForeignKey to Event)
 * due_date (DateTimeField)
-* completed (Boolean)
 * priority (CharField(default='medium'))
 * notes (TextField)
 * image (ImageField)
