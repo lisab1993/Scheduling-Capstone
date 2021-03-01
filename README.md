@@ -20,7 +20,7 @@
 ## Models:
 
 
-## Priority
+### Priority
 * urgency (CharField)
 
 ### Event
