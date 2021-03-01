@@ -10,7 +10,9 @@ Assist
 # Daily Calendar:
 * View all days in a standard calendar view
 * Event name and time will be visible
-* Calendar will come from vuetify
+* Calendar will come from Vuetify
+* The Vuetify calendar will be accessed through an API call
+* Most (if not all) of the calendar's functionality will be under created in the Vue app.
 
 
 # Event Planner:
@@ -26,17 +28,19 @@ Assist
 
 # Models:
 ## Event
-* event_title (charfield)
-* event_due_date (datetimefield)
-* event_completed (boolean)
+* event_title=models.CharField
+* event_completed=models.Boolean
+* event_start_date=models.DateTimeField
+* event_due_date=models.DateTimeField
 
 ## Item
-* item_name (charfield)
-* item_due_date (datetimefield)
-* item_completed (boolean)
-* item_priority (charfield)(default to medium)
-* item_notes (charfield)(no max char limit)
-* item_images (imagefield)
+* item_name=models.CharField
+* item_start_date=models.DateTimeField(auto_now_add=True)
+* item_due_date=models.DateTimeField
+* item_completed=models.Boolean
+* item_priority=models.CharField(default='medium')
+* item_notes=models.CharField
+* item_images=models.ImageField
 
 ## Calendar
 * tbd (after I look into the vuetify calendar, I will decide how this works
