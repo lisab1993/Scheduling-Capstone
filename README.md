@@ -78,8 +78,6 @@ the user to add pictures as well
 site, so the tutorial will be aimed at those who aren't comfortable
     
 
-# Draw io Pictures
-![Login](/images/capstone-login-draw.png)
 
 
 
