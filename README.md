@@ -56,7 +56,7 @@
 ### My Events
 * List of events by name, ordered by their starting date
 * From here, we can add, edit, or delete events
-* There will be a clear button leading to the detail page
+* There will be a  button leading to the detail page
 
 ### Event Detail Page
 

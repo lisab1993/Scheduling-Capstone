@@ -1,5 +1,10 @@
 {% extends 'assistapp/base.html' %}
-
-
 {% block content %}
+
+{% for event in events %}
+<div>
+    {{event.title}}
+</div>
+
+{% endfor %}
 {% endblock %}

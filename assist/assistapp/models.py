@@ -24,12 +24,12 @@ class EventTask(models.Model):
     name = models.CharField(max_length=255)
     event = models.ForeignKey(Event, on_delete=models.PROTECT, related_name='event_tasks')
     due_date = models.DateTimeField()
-    priority = models.ForeignKey(Priority, on_delete=models.PROTECT, related_name='event_tasks')
-    notes = models.TextField()
+    priority = models.ForeignKey(Priority, on_delete=models.PROTECT, related_name='event_tasks', null=True)
+    notes = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='images/', null=True, blank=True)
 
     def __str__(self):
-        return self.name + ' - ' + self.event
+        return self.name + ' - ' + self.event.title
     
 
 

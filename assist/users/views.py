@@ -42,7 +42,7 @@ def login_user(request):
 
     # verify the user's credentials
     user = authenticate(request, username=username, password=password)
-    
+
     # if the credentials match the database, log them in. Otherwise, return an error message
     if user is not None:
         login(request, user)
@@ -50,3 +50,6 @@ def login_user(request):
     else:
         return render(request, 'users/login.html', {'message': 'The username or password is incorrect, please try again'})
 
+def logout(request):
+    logout(request)
+    return HttpResponse('you are logged out')

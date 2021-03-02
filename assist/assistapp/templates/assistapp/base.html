@@ -20,7 +20,20 @@
 <body>
   <div class="container">
     
-    
+   <header class="mt-4">
+     {% comment %} Logo and Logout Button  {% endcomment %}
+     <div class="row justify-content-between mb-5">
+       <span class="col-md-3">Assist</span>
+       <a class="btn btn-primary col-md-2 me-4" href="{% url 'users:logout' %}">Logout</a>
+     </div>
+
+     <div class="row justify-content-around mt-5">
+       <a class="btn btn-primary col-md-3" href="#">Calendar</a>
+       <a class="btn btn-primary col-md-3" href="#">My Events</a>
+       <a class="btn btn-primary col-md-3" href="#">Help</a>
+
+     </div>
+   </header>
     
 
     {% block content %}
