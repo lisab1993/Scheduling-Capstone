@@ -35,7 +35,7 @@
 * name (CharField)
 * event (ForeignKey to Event)
 * due_date (DateTimeField)
-* priority (CharField(default='medium'))
+* priority (ForeignKey to Priority)
 * notes (TextField)
 * image (ImageField)
 

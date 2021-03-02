@@ -1,0 +1,58 @@
+{% extends 'assistapp/base.html' %}
+
+
+{% block content %}
+<h1>Create an Account</h1>
+
+{% comment %} Check if the error message from views was displayed {% endcomment %}
+{% if message %}
+<div class='warning-message'>
+    {{ message }}
+</div>
+{% endif %}
+
+{% comment %} Empty div to show an error message if the passwords don't match{% endcomment %}
+<div id='errorPassword' style='display:none'>
+</div>
+
+<form action="{% url 'users:register_user' %}" method='post'>
+    {% csrf_token %}
+    <div class='mb-3'>
+        <label for='inputUsername' class='form-label'>Please Enter Your Username</label>
+        <input type='text' name='username' class='form-control' id='inputUsername'
+            aria-describedby='Please enter your username.'>
+    </div>
+
+    <div class='mb-3'>
+        <label for='inputPassword' class='form-label'>Please Enter Your Password</label>
+        <input type='password' name='password' class='form-control' id='inputPassword'
+            aria-describedby='Please enter your password.'>
+    </div>
+
+    <div class='mb-3'>
+        <label for='verifyPassword' class='form-label'>Please Re-Enter Your Password</label>
+        <input type='password' class='form-control' id='verifyPassword' aria-describedby='Please enter your password.'>
+    </div>
+
+    <button type='submit' id="goButton" class='btn btn-primary'>Go</button>
+</form>
+
+{% endblock %}
+
+<script type="text/javascript">
+    // Target the passwords, submit button, and error messages 
+    let input_initial_password = document.querySelector('#inputPassword')
+    let input_verified_password = document.querySelector('#verifyPassword')
+    let btn_go = document.querySelector('#goButton')
+    let error_password = document.querySelector('#errorPassword')
+
+    //check if the password and verified password match
+    btn_go.addEventListener('click', function (event) {
+        if (input_initial_password.value != input_verified_password.value) {
+            error_password.innerText = "The passwords don't match"
+            error_password.style.display = ''
+            event.preventDefault()
+        }
+    })
+
+</script>
