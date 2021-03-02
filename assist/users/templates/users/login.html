@@ -1,5 +1,26 @@
 {% extends 'assistapp/base.html' %}
-
-
 {% block content %}
+
+<h1>Login</h1>
+
+{% if message %}
+<div class="row">{{ message }}</div>
+{% endif %}
+
+<form action="{% url 'users:login_user' %}" method='post'>
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label class="form-label" for="username">Please enter your username</label>
+        <input class="form-control" type="text" name='username' id='username'>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="password">Please enter your password</label>
+        <input class="form-control " type="password name" name='password' id='password'>
+    </div>
+
+    <button type='submit' class="btn btn-primary">Login</button>
+</form>
+
 {% endblock %}

@@ -4,16 +4,17 @@
 {% block content %}
 <h1>Create an Account</h1>
 
+
 {% comment %} Check if the error message from views was displayed {% endcomment %}
 {% if message %}
-<div class='warning-message'>
+<div class='warning-message' id='errorPassword'>
     {{ message }}
 </div>
 {% endif %}
-
 {% comment %} Empty div to show an error message if the passwords don't match{% endcomment %}
 <div id='errorPassword' style='display:none'>
 </div>
+
 
 <form action="{% url 'users:register_user' %}" method='post'>
     {% csrf_token %}
@@ -37,7 +38,6 @@
     <button type='submit' id="goButton" class='btn btn-primary'>Go</button>
 </form>
 
-{% endblock %}
 
 <script type="text/javascript">
     // Target the passwords, submit button, and error messages 
@@ -45,14 +45,18 @@
     let input_verified_password = document.querySelector('#verifyPassword')
     let btn_go = document.querySelector('#goButton')
     let error_password = document.querySelector('#errorPassword')
-
+    
     //check if the password and verified password match
     btn_go.addEventListener('click', function (event) {
         if (input_initial_password.value != input_verified_password.value) {
             error_password.innerText = "The passwords don't match"
             error_password.style.display = ''
             event.preventDefault()
+            
         }
     })
-
+    
 </script>
+
+
+{% endblock %}

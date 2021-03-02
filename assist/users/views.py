@@ -28,3 +28,25 @@ def register_user(request):
     # create the user with their username and password
     user = User.objects.create_user(username=username, password=password)
     return HttpResponse('ok')
+
+
+def login_page(request):
+    '''Renders the login screen'''
+    return render(request, 'users/login.html')
+
+def login_user(request):
+    '''Logs in existing users'''
+    # these variables will access the username and password from the database
+    username = request.POST['username']
+    password = request.POST['password']
+
+    # verify the user's credentials
+    user = authenticate(request, username=username, password=password)
+    
+    # if the credentials match the database, log them in. Otherwise, return an error message
+    if user is not None:
+        login(request, user)
+        return HttpResponse('you are logged in')
+    else:
+        return render(request, 'users/login.html', {'message': 'The username or password is incorrect, please try again'})
+
