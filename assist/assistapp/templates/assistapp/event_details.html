@@ -3,9 +3,12 @@
 {% block content %}
 
 <h1>event_details.html</h1>
-
 {% for task in tasks %}
-{{ task.name }}
+<div class="row">
+    {{ task.name }}
+</div>
 {% endfor %}
 
+
+<a class='btn btn-info' href="{% url 'assistapp:my_events' %}">Back to my events</a>
 {% endblock %}

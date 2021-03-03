@@ -3,10 +3,14 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
 from .models import Event, EventTask, Priority
+from django.contrib.auth.models import User
 
 
 # DON'T FORGET TO CHANGE THE HOMEPAGE TO CALENDAR VIEW
 # MY_EVENTS IS BEING USED AS A PLACEHOLDER AS IT'S BEING BUILT FIRST
+# STILL NEED TO ADD SECURITY SO USERS ONLY SEE THEIR OWN STUFF
+
+
 @login_required
 def my_events(request):
     # only allow users to see their own events
@@ -21,11 +25,12 @@ def my_events(request):
     return render(request, 'assistapp/my_events.html', context)
 
 
+
 @login_required
 def event_details(request, event_id):
     # return HttpResponse('detail page')
     tasks = EventTask.objects.filter(event_id=event_id)
-
+    
     return render(request, 'assistapp/event_details.html', {'tasks':tasks})
 
 

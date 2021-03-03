@@ -6,12 +6,13 @@
 {% for event in user_events %}
 <div class="row ms">
 <div class="col-md-6">
-    {{event.title}}
+    <a href="{% url 'assistapp:event_details' event_id=event.id %}">{{event.title}}</a>
 </div>
-    <a class="btn btn-info col-md-2">Detail</a>
+    <a href="{% url 'assistapp:event_details' event_id=event.id %}" class="btn btn-info col-md-2">Detail</a>
     <a class="btn btn-info col-md-2">Edit</a>
     <a class="btn btn-info col-md-2" >Delete</a>
 </div>
 
 {% endfor %}
 {% endblock %}
+
