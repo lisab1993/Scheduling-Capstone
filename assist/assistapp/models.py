@@ -22,7 +22,7 @@ class Event(models.Model):
 
 class EventTask(models.Model):
     name = models.CharField(max_length=255)
-    event = models.ForeignKey(Event, on_delete=models.PROTECT, related_name='event_tasks')
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='event_tasks')
     due_date = models.DateTimeField()
     priority = models.ForeignKey(Priority, on_delete=models.PROTECT, related_name='event_tasks', null=True)
     notes = models.TextField(null=True, blank=True)

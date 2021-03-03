@@ -1,4 +1,4 @@
-{% extends 'assistapp/base.html' %}
+{% extends 'users/user_base.html' %}
 
 
 {% block content %}
@@ -34,8 +34,10 @@
         <label for='verifyPassword' class='form-label'>Please Re-Enter Your Password</label>
         <input type='password' class='form-control' id='verifyPassword' aria-describedby='Please enter your password.'>
     </div>
-
-    <button type='submit' id="goButton" class='btn btn-primary'>Go</button>
+    <div class="row">
+        <button type='submit' id="goButton" class='btn btn-primary col-md-2'>Go</button>
+        <span class="col-md-6">Already have an account? Login <a href="{% url 'users:login_page' %}">here</a></span>
+    </div>
 </form>
 
 

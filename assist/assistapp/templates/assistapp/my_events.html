@@ -1,9 +1,16 @@
 {% extends 'assistapp/base.html' %}
 {% block content %}
 
-{% for event in events %}
-<div>
+<h2> my_events.html </h2>
+
+{% for event in user_events %}
+<div class="row ms">
+<div class="col-md-6">
     {{event.title}}
+</div>
+    <a class="btn btn-info col-md-2">Detail</a>
+    <a class="btn btn-info col-md-2">Edit</a>
+    <a class="btn btn-info col-md-2" >Delete</a>
 </div>
 
 {% endfor %}

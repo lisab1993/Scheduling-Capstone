@@ -19,22 +19,34 @@
 
 <body>
   <div class="container">
-    
-   <header class="mt-4">
-     {% comment %} Logo and Logout Button  {% endcomment %}
-     <div class="row justify-content-between mb-5">
-       <span class="col-md-3">Assist</span>
-       <a class="btn btn-primary col-md-2 me-4" href="{% url 'users:logout' %}">Logout</a>
-     </div>
 
-     <div class="row justify-content-around mt-5">
-       <a class="btn btn-primary col-md-3" href="#">Calendar</a>
-       <a class="btn btn-primary col-md-3" href="#">My Events</a>
-       <a class="btn btn-primary col-md-3" href="#">Help</a>
+    {% comment %}Logged in users will see their name and the logout button{% endcomment %}
+    {% if user.is_authenticated %}
+    <div class="row justify-content-between mt-3">
+      <span class="col-md-5">Welcome {{ user }}</span>
+      <a class="btn btn-primary col-md-2 me-4" href="{% url 'users:logout_user' %}">Logout</a>
+    </div>
 
-     </div>
-   </header>
-    
+    {% comment %}Users who aren't logged in will have the option to login or create an account{% endcomment %}
+    {% else %}
+    <a class="btn btn-primary" href="{% url 'users:login_page' %}">Login</a>
+    <a href="{% url 'users:registration_page' %}">Create an Account</a>
+    {% endif %}
+
+    <header class="mt-4">
+      {% comment %} Logo and standard buttons {% endcomment %}
+      <div class="row">
+        <span>Assist</span>
+      </div>
+
+      <div class="row justify-content-around mt-5">
+        <a class="btn btn-primary col-md-3" href="#">Calendar</a>
+        <a class="btn btn-primary col-md-3" href="#">My Events</a>
+        <a class="btn btn-primary col-md-3" href="#">Help</a>
+
+      </div>
+    </header>
+
 
     {% block content %}
     {% endblock %}

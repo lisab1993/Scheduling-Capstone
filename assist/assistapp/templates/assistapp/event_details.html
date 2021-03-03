@@ -1,0 +1,11 @@
+{% extends 'assistapp/base.html' %}
+
+{% block content %}
+
+<h1>event_details.html</h1>
+
+{% for task in tasks %}
+{{ task.name }}
+{% endfor %}
+
+{% endblock %}
