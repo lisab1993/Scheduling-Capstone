@@ -69,10 +69,17 @@ def event_details(request, event_id):
     # return HttpResponse('detail page')
     tasks = EventTask.objects.filter(event_id=event_id)
     event = Event.objects.get(id=event_id)
-    
     if event.user != request.user:
         raise Http404
-
     return render(request, 'assistapp/event_details.html', {'tasks':tasks})
+
+@login_required
+def show_add_detail(request, ):
+    return render(request, 'assistapp/add_detail.html')
+
+
+
+
+
 
 
