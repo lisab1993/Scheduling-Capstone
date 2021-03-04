@@ -1,0 +1,33 @@
+{% extends 'assistapp/base.html' %}
+{% block content %}
+
+<h2>Add an Event</h2>
+
+<form action="{% url 'assistapp:add_event' %}" method="post">
+    {% csrf_token %}
+<div class="mb-3">
+  <label for="event_title" class="form-label">Event Title</label>
+  <input name="title" type="text" class="form-control" id="event_title">
+</div>
+
+<div class="mb-3">
+  <label for="start_date" class="form-label">Start Date</label>
+  <input name="start_date" type="datetime-local" class="form-control" id="start_date">
+</div>
+
+<div class="mb-3">
+  <label for="end_date" class="form-label">End Date</label>
+  <input name="end_date" type="datetime-local" class="form-control" id="end_date">
+</div>
+
+<button class="btn btn-info" type="submit">Go</button>
+</form>
+
+{% comment %} 
+<form action="{% url 'assistapp:add_event' %}" method="POST" enctype='multipart/form-data'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-info">Go</button>
+</form> {% endcomment %}
+
+{% endblock %}

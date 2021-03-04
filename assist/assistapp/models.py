@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime    
 
 # Create your models here.
 
@@ -12,8 +13,8 @@ class Priority(models.Model):
 
 class Event(models.Model):
     title = models.CharField(max_length=255)
-    start_date = models.DateTimeField()
-    end_date = models.DateTimeField()
+    start_date = models.DateTimeField(default=datetime.now())
+    end_date = models.DateTimeField(default=datetime.now())
     user = models.ForeignKey(User, on_delete=models.PROTECT, related_name ='events')
 
     def __str__(self):
