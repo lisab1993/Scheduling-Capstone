@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 # MY_EVENTS IS BEING USED AS A PLACEHOLDER AS IT'S BEING BUILT FIRST
 # STILL NEED TO ADD SECURITY SO USERS ONLY SEE THEIR OWN STUFF
 
+##Event-related views
 
 @login_required
 def my_events(request):
@@ -22,15 +23,6 @@ def my_events(request):
         'user_events': user_events,
         }
     return render(request, 'assistapp/my_events.html', context)
-
-
-
-@login_required
-def event_details(request, event_id):
-    # return HttpResponse('detail page')
-    tasks = EventTask.objects.filter(event_id=event_id)
-    return render(request, 'assistapp/event_details.html', {'tasks':tasks})
-
 
 
 @login_required
@@ -70,5 +62,17 @@ def edit_event(request, pk):
         event.save()
     return render(request, 'assistapp/edit_events.html', {'event':event})
 
+# EventTask-related views
+
+@login_required
+def event_details(request, event_id):
+    # return HttpResponse('detail page')
+    tasks = EventTask.objects.filter(event_id=event_id)
+    event = Event.objects.get(id=event_id)
+    
+    if event.user != request.user:
+        raise Http404
+
+    return render(request, 'assistapp/event_details.html', {'tasks':tasks})
 
 
