@@ -10,7 +10,7 @@
     </div>
     <a href="{% url 'assistapp:event_details' event_id=event.id %}" class="btn btn-info col-md-2">Detail</a>
     <a class="btn btn-info col-md-2">Edit</a>
-    <a class="btn btn-info col-md-2">Delete</a>
+    <a href="{% url 'assistapp:delete_event' pk=event.pk %}" class="btn btn-info col-md-2">Delete</a>
 </div>
 
 {% endfor %}

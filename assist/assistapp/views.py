@@ -4,7 +4,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
 from .models import Event, EventTask, Priority
 from django.contrib.auth.models import User
-from .forms import EventForm
 
 
 # DON'T FORGET TO CHANGE THE HOMEPAGE TO CALENDAR VIEW
@@ -18,12 +17,10 @@ def my_events(request):
     user = authenticate(username=request.user, password=request.user)
     logged_in = request.user
     user_events = Event.objects.filter(user=logged_in)
-    form=EventForm()
     # put it in the context object to render on the my_events page
     context = {
         'user_events': user_events,
-        'form':form
-    }
+        }
     return render(request, 'assistapp/my_events.html', context)
 
 
@@ -52,22 +49,14 @@ def add_event(request):
         return redirect('assistapp:my_events')
     
 
-# warnings.warn("DateTimeField %s received a naive datetime (%s)"
-# C:\Users\Lisa\AppData\Local\Programs\Python\Python39\lib\site-packages\django\db\models\fields\__init__.py:1367: RuntimeWarning: DateTimeField Event.end_date received a naive datetime (2021-03-04 17:44:00) while time zone support is active.
+def delete_event(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    if event.user != request.user:
+        raise Http404
+    event.delete()
+    return redirect('assistapp:my_events')
 
 
 
 
-
-# def add_event(request):
-#     if request.method == 'POST':
-#         form = EventForm(request.POST)
-#         if form.is_valid():
-#             event = form.save(commit=False)
-#             event.user = request.user
-#             event.save()
-#             return redirect('assistapp:my_events')
-#     else:
-#         form=EventForm()
-#     return render(request, 'assistapp/my_events.html', {'form':form})
 

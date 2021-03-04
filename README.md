@@ -69,6 +69,9 @@
 * The help page will have a small tutorial on how to use this site 
 * Ideally, those with basic computer skills will be able to use this site, so the tutorial will be aimed at those who aren't comfortable
 
+### Add Event Page
+* This page will allow us to add new events.
+
 
 ## Schedule
 
