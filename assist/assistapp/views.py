@@ -57,6 +57,18 @@ def delete_event(request, pk):
     return redirect('assistapp:my_events')
 
 
+def edit_event(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    if event.user != request.user:
+        raise Http404
+    if request.method == 'POST':
+        title = request.POST['title']
+        start_date = request.POST['start_date']
+        end_date = request.POST['end_date']
+        user = request.user 
+        event = Event(title=title, start_date=start_date, end_date=end_date, user=user)
+        event.save()
+    return render(request, 'assistapp/edit_events.html', {'event':event})
 
 
 
