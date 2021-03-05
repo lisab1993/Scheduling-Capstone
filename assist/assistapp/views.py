@@ -97,4 +97,7 @@ def add_detail(request, event_id):
         event.save()
         return redirect('assistapp:my_events')
 
-
+def delete_task(request, pk):
+    task = get_object_or_404(EventTask, pk=pk)
+    task.delete()
+    return redirect('assistapp:my_events')

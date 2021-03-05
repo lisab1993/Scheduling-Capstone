@@ -7,6 +7,7 @@
 {% for task in event.tasks.all %}
 <div class="row">
     {{ task.name }}
+    <a class="btn btn-info col-md-2" href="{% url 'assistapp:delete_task' pk=task.pk %}">Delete Task</a>
 </div>
 {% endfor %}
 
