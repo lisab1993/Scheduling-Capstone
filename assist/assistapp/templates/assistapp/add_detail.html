@@ -2,10 +2,10 @@
 
 {% block content %}
 <h2>add_detail.html</h2>
-<form>
+<form action="{% url 'assistapp:add_detail' event.id %}" method='post'>
     {% csrf_token %}
     <div class="mb-3">
-        <label for="detailName" class="form-label">Event Name</label>
+        <label for="detailName" class="form-label">Task Name</label>
         <input name="name" type="text" class="form-control" id="detailName">
     </div>
 
@@ -21,7 +21,7 @@
 
     <div>
         <label for="detailNotes" class="form-label">Priority</label>
-        <select name="priorities" class="form-select" aria-label="Priority Selection">
+        <select name="priority" class="form-select" aria-label="Priority Selection">
             <option value="High">High</option>
             <option selected value="Medium">Medium</option>
             <option value="Low">Low</option>

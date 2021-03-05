@@ -67,19 +67,34 @@ def edit_event(request, pk):
 @login_required
 def event_details(request, event_id):
     # return HttpResponse('detail page')
-    tasks = EventTask.objects.filter(event_id=event_id)
+    # tasks = EventTask.objects.filter(event_id=event_id)
+    # tasks = event.event_tasks.all()
     event = Event.objects.get(id=event_id)
     if event.user != request.user:
         raise Http404
-    return render(request, 'assistapp/event_details.html', {'tasks':tasks})
+    return render(request, 'assistapp/event_details.html', {'event': event})
 
 @login_required
-def show_add_detail(request, ):
-    return render(request, 'assistapp/add_detail.html')
+def show_add_detail(request, event_id):
+    event = Event.objects.get(id=event_id)
+    if event.user != request.user:
+        raise Http404
+    return render(request, 'assistapp/add_detail.html', {'event':event})
 
-
-
-
-
+@login_required
+def add_detail(request, event_id):
+    event = Event.objects.get(id=event_id)
+    if event.user != request.user:
+        raise Http404
+    if request.method == 'POST':
+        name = request.POST['name']
+        event_id = event_id
+        due_date = request.POST['due_date']
+        priority_urgency = request.GET.get('priority_urgency')
+        notes = request.POST['notes']
+        image = request.FILES.get('image', None)
+        event = EventTask(name=name, due_date=due_date, notes=notes, image=image, priority=priority_urgency, event_id=event_id)
+        event.save()
+        return redirect('assistapp:my_events')
 
 
