@@ -92,12 +92,14 @@ def add_detail(request, event_id):
         due_date = request.POST['due_date']
         priority_urgency = request.GET.get('priority_urgency')
         notes = request.POST['notes']
-        image = request.FILES.get('image', None)
+        image = request.FILES.get('image')
         event = EventTask(name=name, due_date=due_date, notes=notes, image=image, priority=priority_urgency, event_id=event_id)
         event.save()
-        return redirect('assistapp:my_events')
+        return HttpResponseRedirect(reverse('assistapp:event_details', args=[event_id]))
+
 
 def delete_task(request, pk):
     task = get_object_or_404(EventTask, pk=pk)
     task.delete()
-    return redirect('assistapp:my_events')
+    #the request is going to include the page it came from
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
