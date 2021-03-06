@@ -12,12 +12,12 @@
 
 <div class="mb-3">
   <label for="start_date" class="form-label">Start Date</label>
-  <input value="{{ event.start_date|date:"Y-m-d\Tg:h" }}" name="start_date" type="datetime-local" class="form-control" id="start_date">
+  <input value="{{ event.start_date|date:'Y-m-d\Th:i' }}" name="start_date" type="datetime-local" class="form-control" id="start_date">
 </div>
 
 <div class="mb-3">
   <label for="end_date" class="form-label">End Date</label>
-  <input value="{{ event.end_date|date:"Y-m-d\Tg:h" }}" name="end_date" type="datetime-local" class="form-control" id="end_date">
+  <input value="{{ event.end_date|date:'Y-m-d\Th:i' }}" name="end_date" type="datetime-local" class="form-control" id="end_date">
 </div>
 
 

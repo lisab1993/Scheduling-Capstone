@@ -48,19 +48,23 @@ def delete_event(request, pk):
     event.delete()
     return redirect('assistapp:my_events')
 
+def show_edit_event(request,pk):
+    event = get_object_or_404(Event, pk=pk)
+    if event.user != request.user:
+        raise Http404
+    return render(request, 'assistapp/edit_events.html', {'event':event})
 
 def edit_event(request, pk):
     event = get_object_or_404(Event, pk=pk)
     if event.user != request.user:
         raise Http404
     if request.method == 'POST':
-        title = request.POST['title']
-        start_date = request.POST['start_date']
-        end_date = request.POST['end_date']
-        user = request.user 
-        event = Event(title=title, start_date=start_date, end_date=end_date, user=user)
+        event.title = request.POST['title']
+        event.start_date = request.POST['start_date']
+        event.end_date = request.POST['end_date']
+        event.user = request.user 
         event.save()
-    return render(request, 'assistapp/edit_events.html', {'event':event})
+    return redirect('assistapp:my_events')
 
 # EventTask-related views
 

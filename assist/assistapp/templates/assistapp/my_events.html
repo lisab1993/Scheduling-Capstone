@@ -11,7 +11,7 @@
 
     <a href="{% url 'assistapp:event_details' event_id=event.id %}" class="btn btn-info col-md-2">Detail</a>
 
-    <a href="{% url 'assistapp:edit_event' pk=event.pk %}" class="btn btn-info col-md-2">Edit</a>
+    <a href="{% url 'assistapp:show_edit_event' pk=event.pk %}" class="btn btn-info col-md-2">Edit</a>
 
     <a href="{% url 'assistapp:delete_event' pk=event.pk %}" class="btn btn-info col-md-2">Delete</a>
 </div>

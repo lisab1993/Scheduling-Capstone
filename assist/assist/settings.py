@@ -110,13 +110,12 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'America/Los_Angeles'
 
-DATE_INPUT_FORMATS = ['%m/%d/%Y %I:%M %p']
 
 USE_I18N = True
 
 USE_L10N = False
 
-USE_TZ = False
+USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
