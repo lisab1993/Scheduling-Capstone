@@ -13,9 +13,9 @@ urlpatterns = [
     path('<int:pk>/show_edit_event/', views.show_edit_event, name="show_edit_event"),
     path('<int:pk>/edit_event/', views.edit_event, name="edit_event"),
     #EventTask related
-    path('<int:event_id>/event_details', views.event_details, name="event_details"),
-    path('<int:event_id>/show_add_detail/', views.show_add_detail, name="show_add_detail"),
-    path('<int:event_id>/add_detail/', views.add_detail, name="add_detail"),
+    path('<int:event_id>/task_list', views.task_list, name="task_list"),
+    path('<int:event_id>/show_add_task/', views.show_add_task, name="show_add_task"),
+    path('<int:event_id>/add_task/', views.add_task, name="add_task"),
     path('<int:pk>/delete_task/', views.delete_task, name="delete_task"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

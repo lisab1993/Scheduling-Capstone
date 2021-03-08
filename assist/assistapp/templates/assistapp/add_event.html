@@ -23,11 +23,6 @@
 <button class="btn btn-info" type="submit">Go</button>
 </form>
 
-{% comment %} 
-<form action="{% url 'assistapp:add_event' %}" method="POST" enctype='multipart/form-data'>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-info">Go</button>
-</form> {% endcomment %}
+
 
 {% endblock %}

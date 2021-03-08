@@ -1,12 +1,12 @@
 {% extends 'assistapp/base.html' %}
 
 {% block content %}
-<h2>add_detail.html</h2>
-<form action="{% url 'assistapp:add_detail' event.id %}" method='post' enctype="multipart/form-data">
+<h2>add_task.html</h2>
+<form action="{% url 'assistapp:add_task' event.id %}" method='post' enctype="multipart/form-data">
     {% csrf_token %}
     <div class="mb-3">
-        <label for="detailName" class="form-label">Task Name</label>
-        <input name="name" type="text" class="form-control" id="detailName">
+        <label for="taskName" class="form-label">Task Name</label>
+        <input name="name" type="text" class="form-control" id="taskName">
     </div>
 
     <div class="mb-3">
@@ -15,12 +15,12 @@
     </div>
 
     <div class="mb-3">
-        <label for="detailNotes" class="form-label">Notes</label>
-        <input name="notes" type="text" class="form-control" id="detailNotes">
+        <label for="taskNotes" class="form-label">Notes</label>
+        <input name="notes" type="text" class="form-control" id="taskNotes">
     </div>
 
     <div>
-        <label for="detailNotes" class="form-label">Priority</label>
+        <label for="taskNotes" class="form-label">Priority</label>
         <select name="priority" class="form-select" aria-label="Priority Selection">
             <option value="High">High</option>
             <option selected value="Medium">Medium</option>
@@ -29,8 +29,8 @@
     </div>
 
     <div class="mb-3">
-        <label for="detailImage" class="form-label">Image</label>
-        <input name="image" type="file" accept="image/*" class="form-control" id="detailImage">
+        <label for="taskImage" class="form-label">Image</label>
+        <input name="image" type="file" accept="image/*" class="form-control" id="taskImage">
     </div>
 
     <button class="btn btn-info" type="submit">Go</button>
