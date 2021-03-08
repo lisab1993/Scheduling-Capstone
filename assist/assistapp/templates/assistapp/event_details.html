@@ -3,8 +3,8 @@
 {% block content %}
 
 
+<h1>{{ event.title }}</h1>
 {% for task in event.tasks.all %}
-<h1>{{ task.event.title }}</h1>
 <div class="row">
     {{ task.name }}
     <a class="btn btn-info col-md-2" href="{% url 'assistapp:delete_task' pk=task.pk  %}">Delete Task</a>
