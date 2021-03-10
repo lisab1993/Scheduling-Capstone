@@ -78,11 +78,14 @@ def edit_event(request, pk):
 @login_required
 def task_list(request, event_id):
     '''A list of tasks for the selected event(event detail page)'''
+
+
+
+    '''A list of tasks for a specific event'''
     event = Event.objects.get(id=event_id)
     if event.user != request.user:
         raise Http404
     return render(request, 'assistapp/task_list.html', {'event': event})
-
 
 @login_required
 def show_add_task(request, event_id):
