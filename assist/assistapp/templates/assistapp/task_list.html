@@ -8,6 +8,7 @@
 <div class="row">
     {{ task.name }}
     <a class="btn btn-info col-md-2" href="{% url 'assistapp:delete_task' pk=task.pk  %}">Delete Task</a>
+    <a class='btn btn-info col-md-2' href="{% url 'assistapp:show_edit_task' id=task.id %}">Edit Task</a>
 </div>
 {% endfor %}
 

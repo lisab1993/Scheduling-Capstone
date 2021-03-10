@@ -1,0 +1,41 @@
+{% extends 'assistapp/base.html' %}
+
+{% block content %}
+<h2>Edit Task</h2>
+
+
+<form action="{% url 'assistapp:edit_task' task.id %}" method='post' enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="taskName" class="form-label">Task Name</label>
+        <input value="{{ task.name }}" name="name" type="text" class="form-control" id="taskName">
+    </div>
+
+    <div class="mb-3">
+        <label for="dueDate" class="form-label">Due Date</label>
+        <input value="{{ task.due_date|date:'Y-m-d\Th:i' }}" name="due_date" type="datetime-local" class="form-control" id="dueDate">
+    </div>
+
+    <div class="mb-3">
+        <label for="taskNotes" class="form-label">Notes</label>
+        <input value="{{ task.notes }}" name="notes" type="text" class="form-control" id="taskNotes">
+    </div>
+
+    <div>
+        <label for="taskPriority" class="form-label">Priority</label>
+        <select value="{{ priority }}" name="priority" id="taskPriority" class="form-select" aria-label="Priority Selection">
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="taskImage" class="form-label">Image</label>
+        <input name="image" type="file" accept="image/*" class="form-control" id="taskImage">
+    </div>
+
+    <button class="btn btn-info" type="submit">Go</button>
+</form>
+
+{% endblock %}
