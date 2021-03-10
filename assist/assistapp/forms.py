@@ -1,10 +1,9 @@
 from django import forms
-from .models import Event, EventTask
+from .models import Event, EventTask, Priority
 
 
-class EventForm(forms.ModelForm):
-    date_time = forms.DateTimeField()
+class PriorityChoiceField(forms.Form):
 
-    class Meta:
-        model = Event
-        fields = ('title', 'start_date', 'end_date')
+    priorities = forms.ModelChoiceField(
+        queryset=Priority.objects.values_list()
+    )

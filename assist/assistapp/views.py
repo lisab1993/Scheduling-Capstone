@@ -125,9 +125,14 @@ def show_edit_task(request, id):
     '''Render the template to edit a task'''
     # return HttpResponse("ok")
     task = get_object_or_404(EventTask, id=id)
+    priorities = Priority.objects.all()
     if task.event.user != request.user:
         raise Http404
-    return render(request, 'assistapp/edit_task.html', {'task':task})
+    context = {
+        'task':task,
+        'priorities':priorities
+    }
+    return render(request, 'assistapp/edit_task.html', context)
 
 
 @login_required
@@ -135,16 +140,14 @@ def edit_task(request, id):
     task = get_object_or_404(EventTask, id=id)
     if task.event.user != request.user:
         raise Http404
-    if request.method == 'POST':
-        name = request.POST['name']
-        due_date = request.POST['due_date']
-        priority = request.POST['priority']
-        notes = request.POST['notes']
-        image = request.FILES.get('image')
-        task = EventTask(name=name, due_date=due_date, notes=notes, image=image, priority=priority)
-        task.save()
-        #tell the program to return to the task list at the task's event id
-        return redirect(request, 'assistapp:task_list', id='event_id')
+    task.name = request.POST['name']
+    task.due_date = request.POST['due_date']
+    task.priority_id = request.POST['priority_id']
+    task.notes = request.POST['notes']
+    task.image = request.FILES.get('image')
+    task.save()
+    #tell the program to return to the task list at the task's event id
+    return redirect('assistapp:task_list', event_id=task.event_id)
 
     # path('<int:id>/edit_task/', views.edit_task, name="edit_task")
 

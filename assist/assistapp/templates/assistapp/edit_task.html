@@ -23,10 +23,10 @@
 
     <div>
         <label for="taskPriority" class="form-label">Priority</label>
-        <select value="{{ priority }}" name="priority" id="taskPriority" class="form-select" aria-label="Priority Selection">
-            <option value="High">High</option>
-            <option value="Medium">Medium</option>
-            <option value="Low">Low</option>
+        <select name="priority_id" id="taskPriority" class="form-select" aria-label="Priority Selection">
+            {% for priority in priorities%}
+            <option value="{{priority.id}}"{% if priority.id == task.priority.id %} selected{% endif %} >{{ priority.urgency }}</option>
+            {% endfor %}
         </select>
     </div>
 
