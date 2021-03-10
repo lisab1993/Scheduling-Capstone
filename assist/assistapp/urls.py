@@ -14,8 +14,8 @@ urlpatterns = [
     path('<int:pk>/edit_event/', views.edit_event, name="edit_event"),
     #EventTask related
     path('<int:event_id>/task_list', views.task_list, name="task_list"),
-    path('<int:event_id>/show_add_detail/', views.show_add_detail, name="show_add_detail"),
-    path('<int:event_id>/add_detail/', views.add_detail, name="add_detail"),
+    path('<int:event_id>/show_add_task/', views.show_add_task, name="show_add_task"),
+    path('<int:event_id>/add_task/', views.add_task, name="add_task"),
     path('<int:pk>/delete_task/', views.delete_task, name="delete_task"),
     path('<int:id>/show_edit_task/', views.show_edit_task, name="show_edit_task"),
     path('<int:id>/edit_task/', views.edit_task, name="edit_task")

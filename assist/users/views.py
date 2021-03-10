@@ -49,8 +49,7 @@ def login_user(request):
         login(request, user)
         return HttpResponseRedirect(reverse('assistapp:my_events'))
     else:
-        return render(request, 'assistapp/my_events.html', {'message': 'The username or password is incorrect, please try again'})
-
+        return HttpResponseRedirect(reverse('users:login_page'))
 def logout_user(request):
     logout(request)
     return HttpResponseRedirect(reverse('users:login_page'))
