@@ -9,7 +9,10 @@
         <a href="{% url 'assistapp:task_list' event_id=event.id %}">{{event.title}}</a>
     </div>
 
+
     <a href="{% url 'assistapp:task_list' event_id=event.id %}" class="btn btn-info col-md-2">Detail</a>
+
+    <a href="{% url 'assistapp:task_list' event_id=event.id %}" class="btn btn-info col-md-2">View Tasks</a>
 
     <a href="{% url 'assistapp:show_edit_event' pk=event.pk %}" class="btn btn-info col-md-2">Edit</a>
 
