@@ -1,41 +1,52 @@
 {% extends 'assistapp/base.html' %}
 
 {% block content %}
-<h2>Edit Task</h2>
+<h2 class="title_text text-center mt-2 mb-4">Edit {{task.name}}</h2>
 
 
 <form action="{% url 'assistapp:edit_task' task.id %}" method='post' enctype="multipart/form-data">
     {% csrf_token %}
+
+    {% comment %} Task Name {% endcomment %}
     <div class="mb-3">
         <label for="taskName" class="form-label">Task Name</label>
-        <input value="{{ task.name }}" name="name" type="text" class="form-control" id="taskName">
+        <input value="{{ task.name }}" name="name" type="text" class="form-control edit_text" id="taskName">
     </div>
 
+    {% comment %} Due Date {% endcomment %}
     <div class="mb-3">
         <label for="dueDate" class="form-label">Due Date</label>
-        <input value="{{ task.due_date|date:'Y-m-d\Th:i' }}" name="due_date" type="datetime-local" class="form-control" id="dueDate">
+        <input value="{{ task.due_date|date:'Y-m-d\Th:i' }}" name="due_date" type="datetime-local" class="form-control edit_text" id="dueDate">
     </div>
 
+    {% comment %} Notes {% endcomment %}
     <div class="mb-3">
         <label for="taskNotes" class="form-label">Notes</label>
-        <input value="{{ task.notes }}" name="notes" type="text" class="form-control" id="taskNotes">
+        <input value="{{ task.notes }}" name="notes" type="text" class="form-control edit_text" id="taskNotes">
     </div>
 
+    {% comment %} Priority {% endcomment %}
     <div>
         <label for="taskPriority" class="form-label">Priority</label>
-        <select name="priority_id" id="taskPriority" class="form-select" aria-label="Priority Selection">
+        <select name="priority_id" id="taskPriority" class="form-select edit_text" aria-label="Priority Selection">
             {% for priority in priorities%}
             <option value="{{priority.id}}"{% if priority.id == task.priority.id %} selected{% endif %} >{{ priority.urgency }}</option>
             {% endfor %}
         </select>
     </div>
 
+    {% comment %} Image {% endcomment %}
     <div class="mb-3">
-        <label for="taskImage" class="form-label">Image</label>
-        <input name="image" type="file" accept="image/*" class="form-control" id="taskImage">
+        <span class="row"><label for="taskImage" class="form-label">Image</label></span>
+        <input value="{{ task.image }}" name="image" type="file" accept="image/*" class="form-control edit_text" id="taskImage">
+        <div class="form-text"><a class="me-3"></a><input type="checkbox" name="clear_image" class="me-1"/>Clear</div>
     </div>
 
-    <button class="btn btn-info" type="submit">Go</button>
+    {% comment %} Button {% endcomment %}
+    <div class="text-center">
+        <button class="btn btn-info edit_button col-md-4" type="submit">Go</button>
+    </div>
+    
 </form>
 
 {% endblock %}

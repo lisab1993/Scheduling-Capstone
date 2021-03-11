@@ -1,20 +1,23 @@
 {% extends 'assistapp/base.html' %}
 {% block content %}
 
-<h2> My Events </h2>
+<h2 class="title_text text-center mt-2 mb-4">My Events</h2>
 
 {% for event in user_events %}
-<div class="row ms">
-    <div class="col-md-6">
-        <a href="{% url 'assistapp:task_list' event_id=event.id %}">{{event.title}}</a>
+<div class="row">
+    <div class="col-md-5">
+        <a class='event_text' href="{% url 'assistapp:task_list' event_id=event.id %}">{{event.title}}</a>
     </div>
-    <a href="{% url 'assistapp:task_list' event_id=event.id %}" class="btn btn-info col-md-2">View Tasks</a>
-    <a href="{% url 'assistapp:show_edit_event' pk=event.pk %}" class="btn btn-info col-md-2">Edit</a>
-    <a href="{% url 'assistapp:delete_event' pk=event.pk %}" class="btn btn-info col-md-2">Delete</a>
+    <a href="{% url 'assistapp:task_list' event_id=event.id %}" class="btn btn-info col-md-2 event_button">View Tasks</a>
+    <a href="{% url 'assistapp:show_edit_event' pk=event.pk %}" class="btn btn-info col-md-2 event_button">Edit</a>
+    <a href="{% url 'assistapp:delete_event' pk=event.pk %}" class="btn btn-info col-md-2 event_button">Delete</a>
+    <hr>
 </div>
 
 {% endfor %}
+<div class="text-center">
+    <a class="btn btn-info add_event_button" href="{% url 'assistapp:show_add_event' %}">Add an Event</a>
+</div>
 
-<a class="btn btn-info" href="{% url 'assistapp:show_add_event' %}">Add an Event</a>
 {% endblock %}
 

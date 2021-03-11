@@ -3,17 +3,25 @@
 {% block content %}
 
 
-<h1>{{ event.title }}</h1>
+<h1 class="title_text text-center mt-2 mb-4">{{ event.title }}</h1>
+
 {% for task in event.tasks.all %}
 <div class="row">
-    {{ task.name }}
-    <a class="btn btn-info col-md-2" href="{% url 'assistapp:delete_task' pk=task.pk  %}">Delete Task</a>
-    <a class='btn btn-info col-md-2' href="{% url 'assistapp:show_edit_task' id=task.id %}">Edit Task</a>
+    <div class="event_text col-md-5">{{ task.name }}</div class="event_text col-md-5">
+    <a class="btn btn-info col-md-3 event_button" href="{% url 'assistapp:delete_task' pk=task.pk  %}">Delete Task</a>
+    <a class='btn btn-info col-md-2 event_button' href="{% url 'assistapp:show_edit_task' id=task.id %}">Edit Task</a>
 </div>
+<div class="row">Notes: {{ task.notes }}</div>
+<div class="row">Due Date: {{ task.due_date }}</div>
+{% if task.image %}
+<div class="row"><img src="{{task.image.url}} alt=""></div>
+{% endif %}
+<hr>
 {% endfor %}
 
+<div class="row justify-content-evenly">
+    <a class='col-md-4 btn btn-info task_controls' href="{% url 'assistapp:my_events' %}">Back to my events</a>
+    <a class="col-md-4 btn btn-info task_controls" href="{% url 'assistapp:show_add_task' event.id  %}">Add Task</a>
+</div>
 
-<a class='btn btn-info' href="{% url 'assistapp:my_events' %}">Back to my events</a>
-<a class="btn btn-info" href="{% url 'assistapp:show_add_task' event.id  %}">Add Task</a>
 {% endblock %}
-
