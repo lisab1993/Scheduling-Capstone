@@ -80,7 +80,7 @@ def edit_event(request, pk):
         event.save()
     return redirect('assistapp:my_events')
 
-
+#########################################################
 # EventTask-related views
 @login_required
 def task_list(request, event_id):
