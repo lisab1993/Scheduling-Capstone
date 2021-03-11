@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -19,43 +18,29 @@
     <div id="app">
         <v-app id="inspire">
             <div>
-                <!-- The sheet is like a container; this holds the controls at the top  -->
-                <v-sheet height="54" class="d-flex">
-                    <!-- goes back to the previous month  -->
+                <v-sheet tile height="54" class="d-flex">
                     <v-btn icon class="ma-2" @click="$refs.calendar.prev()">
                         <v-icon>mdi-chevron-left</v-icon>
                     </v-btn>
-                    <!-- Select dropdown; defaults to type month; populates with types  -->
                     <v-select v-model="type" :items="types" dense outlined hide-details class="ma-2" label="type">
                     </v-select>
-                    <!-- Determines the mode  -->
                     <v-select v-model="mode" :items="modes" dense outlined hide-details label="event-overlap-mode"
                         class="ma-2"></v-select>
-                    <!-- Determines when the weekends are  -->
                     <v-select v-model="weekday" :items="weekdays" dense outlined hide-details label="weekdays"
                         class="ma-2"></v-select>
-                    <!-- button to see the next month  -->
+                    <v-spacer></v-spacer>
                     <v-btn icon class="ma-2" @click="$refs.calendar.next()">
                         <v-icon>mdi-chevron-right</v-icon>
                     </v-btn>
                 </v-sheet>
-
-                <!-- The height here is the height of the calendar  -->
                 <v-sheet height="600">
-                    <!-- ref="calendar" calls up the calendar  -->
-                    <!-- two way communication on the v-model="value", which is a blank string -->
-                    <!-- Weekdays and type sets it to a monthly view with standard weekend dates -->
-                    <!-- The colon before the others is shorthand for v-bind  -->
-                    <!-- V-bind: Dynamically bind one or more attributes, or a component prop to an expression. -->
-                    <!-- @ is shorthand for v-on  -->
-                    <!-- v-on change listens for a change on the v-model.  -->
                     <v-calendar ref="calendar" v-model="value" :weekdays="weekday" :type="type" :events="events"
                         :event-overlap-mode="mode" :event-overlap-threshold="30" :event-color="getEventColor"
-                        @change="getEvents">
-                    </v-calendar>
+                        @change="getEvents"></v-calendar>
                 </v-sheet>
             </div>
         </v-app>
+    </div>
     </div>
 
     <!-- Vue CDN  -->
@@ -84,22 +69,40 @@
                 value: '',
                 events: [],
                 colors: ['blue', 'indigo', 'deep-purple', 'cyan', 'green', 'orange', 'grey darken-1'],
-                names: [],
+                names: ['Meeting', 'Holiday', 'PTO', 'Travel', 'Event', 'Birthday', 'Conference', 'Party'],
             }),
             methods: {
-                getEvents: function () {
-                    axios({
-                        url: "{% url 'assistapp:get_events'%}",
-                        method: 'get',
-                    }).then(response => {
-                        console.log(response.data)
-                        this.events = response.data.events
-                    })
+                getEvents({ start, end }) {
+                    const events = []
 
+                    const min = new Date(`${start.date}T00:00:00`)
+                    const max = new Date(`${end.date}T23:59:59`)
+                    const days = (max.getTime() - min.getTime()) / 86400000
+                    const eventCount = this.rnd(days, days + 20)
 
+                    for (let i = 0; i < eventCount; i++) {
+                        const allDay = this.rnd(0, 3) === 0
+                        const firstTimestamp = this.rnd(min.getTime(), max.getTime())
+                        const first = new Date(firstTimestamp - (firstTimestamp % 900000))
+                        const secondTimestamp = this.rnd(2, allDay ? 288 : 8) * 900000
+                        const second = new Date(first.getTime() + secondTimestamp)
+
+                        events.push({
+                            name: this.names[this.rnd(0, this.names.length - 1)],
+                            start: first,
+                            end: second,
+                            color: this.colors[this.rnd(0, this.colors.length - 1)],
+                            timed: !allDay,
+                        })
+                    }
+
+                    this.events = events
                 },
                 getEventColor(event) {
                     return event.color
+                },
+                rnd(a, b) {
+                    return Math.floor((b - a + 1) * Math.random()) + a
                 },
             },
         })

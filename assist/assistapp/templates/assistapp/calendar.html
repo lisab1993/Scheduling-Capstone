@@ -86,18 +86,14 @@
                 names: [],
             }),
             methods: {
-                getEvents: function () {
+                getEvents: function ({start, end}) {
                     console.log(this.weekday, this.weekdays, this.type)
                     axios({
                         url: "{% url 'assistapp:get_events'%}",
                         method: 'get',
                     }).then(response => {
-                        //for each item inside an array, it will iterate through the list until it hits the end. It will do it once.
-                        //declare a value(event in this case)
-                        response.data.events.forEach(event => {
-                            console.log(event)
-                            this.events.push(event)
-                        })
+                        this.events=response.data.events
+                        // this.names=['hello']
                         console.log(this.events)
                     })
                         

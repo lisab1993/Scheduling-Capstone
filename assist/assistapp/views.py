@@ -166,6 +166,8 @@ def get_events(request):
            'event-name':event.title,
            'start':event.start_date.strftime('%Y-%m-%d %H:%M'),
            'end':event.end_date.strftime('%Y-%m-%d %H:%M'),
+           'color':'blue',
+           'name': event.title
         })
     print(events_list)
     return JsonResponse({'events':events_list})
