@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Fonts  -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <!-- Vuetify Icons  -->
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <!-- Vuetify CSS  -->
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <!-- Custom CSS  -->
+    <link rel="stylesheet" href="{% static 'assistapp/assist_style.css' %}">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+
+<body>
+    <div id="app">
+        <v-app id="inspire">
+            <div>
+                <!-- The sheet is like a container; this holds the controls at the top  -->
+                <v-sheet height="54" class="d-flex">
+                    <!-- goes back to the previous month  -->
+                    <v-btn icon class="ma-2" @click="$refs.calendar.prev()">
+                        <v-icon>mdi-chevron-left</v-icon>
+                    </v-btn>
+                    <!-- Select dropdown; defaults to type month; populates with types  -->
+                    <v-select v-model="type" :items="types" dense outlined hide-details class="ma-2" label="type">
+                    </v-select>
+                    <!-- Determines the mode  -->
+                    <v-select v-model="mode" :items="modes" dense outlined hide-details label="event-overlap-mode"
+                        class="ma-2"></v-select>
+                    <!-- Determines when the weekends are  -->
+                    <v-select v-model="weekday" :items="weekdays" dense outlined hide-details label="weekdays"
+                        class="ma-2"></v-select>
+                    <!-- button to see the next month  -->
+                    <v-btn icon class="ma-2" @click="$refs.calendar.next()">
+                        <v-icon>mdi-chevron-right</v-icon>
+                    </v-btn>
+                </v-sheet>
+
+                <!-- The height here is the height of the calendar  -->
+                <v-sheet height="600">
+                    <!-- ref="calendar" calls up the calendar  -->
+                    <!-- two way communication on the v-model="value", which is a blank string -->
+                    <!-- Weekdays and type sets it to a monthly view with standard weekend dates -->
+                    <!-- The colon before the others is shorthand for v-bind  -->
+                    <!-- V-bind: Dynamically bind one or more attributes, or a component prop to an expression. -->
+                    <!-- @ is shorthand for v-on  -->
+                    <!-- v-on change listens for a change on the v-model.  -->
+                    <v-calendar ref="calendar" v-model="value" :weekdays="weekday" :type="type" :events="events"
+                        :event-overlap-mode="mode" :event-overlap-threshold="30" :event-color="getEventColor"
+                        @change="getEvents"></v-calendar>
+                </v-sheet>
+            </div>
+        </v-app>
+    </div>
+
+    <!-- Vue CDN  -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <!-- Vuetify CDN  -->
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <!-- Axios CDN  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+            data: () => ({
+                //defaults to the month arrangement, but allows us to choose others
+                type: 'month',
+                types: ['month', 'week', 'day', '4day'],
+                mode: 'stack',
+                modes: ['stack', 'column'],
+                weekday: [0, 1, 2, 3, 4, 5, 6],
+                weekdays: [
+                    { text: 'Sun - Sat', value: [0, 1, 2, 3, 4, 5, 6] },
+                    { text: 'Mon - Sun', value: [1, 2, 3, 4, 5, 6, 0] },
+                    { text: 'Mon - Fri', value: [1, 2, 3, 4, 5] },
+                    { text: 'Mon, Wed, Fri', value: [1, 3, 5] },
+                ],
+                value: '',
+                events: [],
+                colors: ['blue', 'indigo', 'deep-purple', 'cyan', 'green', 'orange', 'grey darken-1'],
+                names: [],
+            }),
+            methods: {
+                getEvents: function () {
+                    console.log(this.weekday, this.weekdays, this.type)
+                    axios({
+                        url: "{% url 'assistapp:get_events'%}",
+                        method: 'get',
+                    }).then(response => {
+                        //for each item inside an array, it will iterate through the list until it hits the end. It will do it once.
+                        //declare a value(event in this case)
+                        response.data.events.forEach(event => {
+                            console.log(event)
+                            this.events.push(event)
+                        })
+                        console.log(this.events)
+                    })
+                        
+                },
+                getEventColor(event) {
+                    return event.color
+                },
+            },
+        })
+    </script>
+</body>
+
+</html> -->

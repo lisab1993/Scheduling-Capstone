@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
-from django.http import HttpResponse, Http404, HttpResponseRedirect
+from django.http import HttpResponse, Http404, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
 from .models import Event, EventTask, Priority
 from django.contrib.auth.models import User
-
+import calendar
+from datetime import datetime
 
 # DON'T FORGET TO CHANGE THE HOMEPAGE TO CALENDAR VIEW
 # MY_EVENTS IS BEING USED AS A PLACEHOLDER AS IT'S BEING BUILT FIRST
@@ -151,4 +152,21 @@ def edit_task(request, id):
 
     # path('<int:id>/edit_task/', views.edit_task, name="edit_task")
 
+#Calendar
 
+def show_calendar(request):
+    return render(request, 'assistapp/calendar.html')
+
+def get_events(request):
+    user = request.user
+    events = Event.objects.filter(user=user)
+    events_list = []
+    for event in events:
+        events_list.append({
+           'event-name':event.title,
+           'start':event.start_date.strftime('%Y-%m-%d %H:%M'),
+           'end':event.end_date.strftime('%Y-%m-%d %H:%M'),
+        })
+    print(events_list)
+    return JsonResponse({'events':events_list})
+    
