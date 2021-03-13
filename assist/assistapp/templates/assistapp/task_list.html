@@ -11,22 +11,23 @@
     <a class="btn btn-info col-md-3 event_button" href="{% url 'assistapp:delete_task' pk=task.pk  %}">Delete Task</a>
     <a class='btn btn-info col-md-2 event_button' href="{% url 'assistapp:show_edit_task' id=task.id %}">Edit Task</a>
 </div>
-<div class="row">
-    <span>Priority: {{ task.priority }}</span>
-</div>
+<div class="task_list_box">
+    <div class="row">
+        <span class="task_text">Priority: {{ task.priority }}</span>
+    </div>
 
-<div class="row">
-    <span>Notes: {{ task.notes }}</span>
-</div>
+    <div class="row">
+        <span class="task_text">Notes: {{ task.notes }}</span>
+    </div>
 
-<div class="row">
-    <span>Due Date: {{ task.due_date }}</span>
+    <div class="row">
+        <span class="task_text">Due Date: {{ task.due_date }}</span>
+    </div>
 </div>
-
 
 {% if task.image %}
 <div class="row image_style">
-    <img src="{{task.image.url}}">
+    <img class="image_direct" src="{{task.image.url}}">
 </div>
 {% endif %}
 <hr>

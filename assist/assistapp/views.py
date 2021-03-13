@@ -152,14 +152,13 @@ def edit_task(request, id):
     task.due_date = request.POST['due_date']
     task.priority_id = request.POST['priority_id']
     task.notes = request.POST['notes']
-    task.image = request.FILES.get('image')
-    task.save()
-
+    
     if 'clear_image' in request.POST:
         task.image = None
     elif 'image' in request.FILES:
         image = request.FILES['image']
         task.image = image
+    task.save()
     # tell the program to return to the task list at the task's event id
     return redirect('assistapp:task_list', event_id=task.event_id)
 

@@ -6,6 +6,14 @@ body {
     background-color: #f8b19544;
 }
 
+label {
+    font-family: 'Paprika', cursive;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
+                /* Header Styling and Buttons */
 /* Welcome user  */
 .welcome_text {
     font-family: 'Paprika', cursive;
@@ -13,12 +21,10 @@ body {
     font-weight: bold;
 }
 
-/* buttons in the base header; also used in login/logout  */
-.header_button {
-    font-family: 'RocknRoll One', sans-serif;
-    background-color: #6C5B7B;
-    border-color: #413749;
-    color: whitesmoke;
+/* Sets the header to full width */
+.header_container {
+    width: 100%;
+    padding: 0 !important;
 }
 
 /* App name */
@@ -30,6 +36,16 @@ body {
     color: #1f4464;
 }
 
+/* buttons in the base header; also used in login/logout  */
+.header_button {
+    font-family: 'RocknRoll One', sans-serif;
+    background-color: #6C5B7B;
+    border-color: #413749;
+    color: whitesmoke;
+}
+
+
+                /* Text and titles within the program  */
 /* Page titles, such as My Events  */
 .title_text {
     font-family: 'Paprika', cursive;
@@ -41,10 +57,51 @@ body {
 .event_text {
     text-decoration: none;
     font-family: 'RocknRoll One', sans-serif;
-    font-size: 20px;
+    font-size: 22px;
     color: black;
 }
 
+/* Task list text  */
+.task_text {
+    font-family: 'RocknRoll One', sans-serif;
+    font-size: 15px;
+}
+
+/* Text within editing and adding forms  */
+.edit_text {
+    font-family: 'RocknRoll One', sans-serif;
+    font-size: 15px;
+    background-color: #97afca79;
+}
+
+.edit_text:focus {
+    font-family: 'RocknRoll One', sans-serif;
+    font-size: 15px;
+    background-color: #97afca79;
+    outline: #54a0be88 solid 10px;
+}
+
+.image_style {
+    width: 300px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.image_direct {
+    padding: 0 !important; 
+    border: 1px solid slategray;
+    border-radius: 5px;
+}
+
+.task_list_box {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    width: 375px;
+    margin-left: 20px;
+}
+
+                /* Buttons (header buttons are in the header section) */
 /* CRUD operation buttons for events and tasks  */
 .event_button {
     font-family: 'RocknRoll One', sans-serif;
@@ -63,35 +120,6 @@ body {
     width: 300px;
 }
 
-/* Buttons to add a task or event  */
-.task_controls {
-    font-family: 'RocknRoll One', sans-serif;
-    background-color: #6C5B7B;
-    border-color: #413749;
-    color: whitesmoke;
-}
-
-/* Label for editing and adding forms */
-label {
-    font-family: 'Paprika', cursive;
-    font-weight: bold;
-    font-size: 18px;
-}
-
-/* Text within editing and adding forms  */
-.edit_text {
-    font-family: 'RocknRoll One', sans-serif;
-    font-size: 15px;
-    background-color: #97afca79;
-}
-
-.edit_text:focus {
-    font-family: 'RocknRoll One', sans-serif;
-    font-size: 15px;
-    background-color: #97afca79;
-    outline: #54a0be88 solid 10px;
-}
-
 /* Submit button to edit and add tasks and events  */
 .edit_button {
     font-family: 'RocknRoll One', sans-serif;
@@ -100,10 +128,11 @@ label {
     color: whitesmoke;
 }
 
-.header_container {
-    width: 100%;
-    padding: 0 !important;
+/* Buttons to add a task or event  */
+.task_controls {
+    font-family: 'RocknRoll One', sans-serif;
+    background-color: #6C5B7B;
+    border-color: #413749;
+    color: whitesmoke;
 }
-.image_style {
-    width: 300px;
-}
+
