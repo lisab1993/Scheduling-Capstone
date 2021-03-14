@@ -1,27 +1,33 @@
 {% extends 'assistapp/base.html' %}
 {% block content %}
 
+{% comment %} Name of the event the user is editing  {% endcomment %}
 <h2 class="title_text text-center mt-2 mb-4">Edit {{ event.title }}</h2>
 
 <form action="{% url 'assistapp:edit_event' pk=event.pk %}" method="post">
   {% csrf_token %}
+
+  {% comment %} Event title being edited  {% endcomment %}
   <div class="mb-3">
     <label for="event_title" class="form-label">Event Title</label>
     <input value="{{ event.title }}" name="title" type="text" class="form-control edit_text" id="event_title">
   </div>
 
+  {% comment %} Event start date being edited  {% endcomment %}
   <div class="mb-3">
     <label for="start_date" class="form-label">Start Date</label>
     <input value="{{ event.start_date|date:'Y-m-d\Th:i' }}" name="start_date" type="datetime-local"
       class="form-control edit_text" id="start_date">
   </div>
 
+  {% comment %} End date being edited  {% endcomment %}
   <div class="mb-3">
     <label for="end_date" class="form-label">End Date</label>
     <input value="{{ event.end_date|date:'Y-m-d\Th:i' }}" name="end_date" type="datetime-local"
       class="form-control edit_text" id="end_date">
   </div>
 
+  {% comment %} Submit button  {% endcomment %}
   <div class="text-center">
     <button class="btn btn-info edit_button col-md-4" type="submit">Go</button>
   </div>

@@ -4,21 +4,25 @@
 <h2>add_task.html</h2>
 <form action="{% url 'assistapp:add_task' event.id %}" method='post' enctype="multipart/form-data">
     {% csrf_token %}
+    {% comment %} Name your task  {% endcomment %}
     <div class="mb-3">
         <label for="taskName" class="form-label">Task Name</label>
         <input name="name" type="text" class="form-control" id="taskName">
     </div>
 
+    {% comment %} Task due date  {% endcomment %}
     <div class="mb-3">
         <label for="dueDate" class="form-label">Due Date</label>
         <input name="due_date" type="datetime-local" class="form-control" id="dueDate">
     </div>
 
+    {% comment %} Task notes  {% endcomment %}
     <div class="mb-3">
         <label for="taskNotes" class="form-label">Notes</label>
         <input name="notes" type="text" class="form-control" id="taskNotes">
     </div>
 
+    {% comment %} Priority selection  {% endcomment %}
     <div>
         <label for="taskNotes" class="form-label">Priority</label>
         <select name="priority" class="form-select" aria-label="Priority Selection">
@@ -28,11 +32,13 @@
         </select>
     </div>
 
+    {% comment %} Image selection  {% endcomment %}
     <div class="mb-3">
         <label for="taskImage" class="form-label">Image</label>
         <input name="image" type="file" accept="image/*" class="form-control" id="taskImage">
     </div>
 
+    {% comment %} Submit button  {% endcomment %}
     <button class="btn btn-info" type="submit">Go</button>
 </form>
 

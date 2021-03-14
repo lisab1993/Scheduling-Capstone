@@ -39,21 +39,23 @@
     <a href="{% url 'users:registration_page' %}">Create an Account</a>
     {% endif %}
  </div>
+ 
+      {% comment %} Logo {% endcomment %}
  <div class="container-fluid header_container">
-      {% comment %} Logo and navigation buttons {% endcomment %}
     <header class="mt-2">
       <div class="row">
         <span class="assist_logo">Assist</span>
       </div>
-
+        {% comment %} Calendar, My Events, and Help buttons {% endcomment %}
       <div class="row justify-content-around mt-5">
         <a class="btn btn-primary col-md-3 header_button mb-3" href="{% url 'assistapp:show_calendar' %}">Calendar</a>
         <a class="btn btn-primary col-md-3 header_button mb-3" href="{% url 'assistapp:my_events' %}">My Events</a>
         <a class="btn btn-primary col-md-3 header_button mb-3" href="#">Help</a>
-
       </div>
     </header>
   </div>
+
+  {% comment %} Block content  {% endcomment %}
   <div class="container">
     {% block content %}
     {% endblock %}

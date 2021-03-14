@@ -2,18 +2,35 @@ header {
     background-color: #e47e9b;
 }
 
+/* html, body {
+    margin: 0;
+    height: 100%;
+    background-color: #f8b19544;
+    background-position: cover;
+} */
+
+html {
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-color: #f8b19544;
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 label {
     font-family: 'Paprika', cursive;
     font-weight: bold;
     font-size: 18px;
+    color: black;
 }
 
 
-                /* Header Styling and Buttons */
+            /* Header Styling and Buttons */
 /* Welcome user  */
 .welcome_text {
     font-family: 'Paprika', cursive;
@@ -23,7 +40,7 @@ label {
 
 /* Sets the header to full width */
 .header_container {
-    width: 100%;
+    width: 100% !important;
     padding: 0 !important;
 }
 
@@ -45,7 +62,7 @@ label {
 }
 
 
-                /* Text and titles within the program  */
+         /* Text and titles within the program  */
 /* Page titles, such as My Events  */
 .title_text {
     font-family: 'Paprika', cursive;
@@ -74,6 +91,7 @@ label {
     background-color: #97afca79;
 }
 
+/* Controls the border around the text when clicked  */
 .edit_text:focus {
     font-family: 'RocknRoll One', sans-serif;
     font-size: 15px;
@@ -81,18 +99,17 @@ label {
     outline: #54a0be88 solid 10px;
 }
 
-.image_style {
-    width: 300px;
-    margin-left: 20px;
-    margin-top: 20px;
-}
 
+        /* Misc.  */
+/* Controls how the image appears  */
 .image_direct {
     padding: 0 !important; 
     border: 1px solid slategray;
     border-radius: 5px;
+    max-width: 350px;
 }
 
+/* The box around the details within the task_list.html template  */
 .task_list_box {
     border: 1px solid black;
     border-radius: 5px;
@@ -101,7 +118,19 @@ label {
     margin-left: 20px;
 }
 
-                /* Buttons (header buttons are in the header section) */
+/* The vertical line on edit_task.html  */
+.image_divider {
+    border-left: 6px solid black;
+    max-height: 500px;
+}
+
+/* Clears the picture on edit_task.html */
+.clear_picture {
+    font-family: 'Paprika', cursive !important;
+    color: rgb(0, 0, 0);
+}
+
+         /* Buttons (header buttons are in the header section) */
 /* CRUD operation buttons for events and tasks  */
 .event_button {
     font-family: 'RocknRoll One', sans-serif;
@@ -127,6 +156,7 @@ label {
     border-color: #413749;
     color: whitesmoke;
 }
+
 
 /* Buttons to add a task or event  */
 .task_controls {

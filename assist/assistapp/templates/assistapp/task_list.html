@@ -2,15 +2,18 @@
 
 {% block content %}
 
-
+{% comment %} Event the tasks belong to  {% endcomment %}
 {% for task in event.tasks.all %}
 <h1 class="title_text text-center mt-2 mb-4">{{ event.title }}</h1>
 
+{% comment %} Task name, delete task, edit task  {% endcomment %}
 <div class="row">
     <div class="event_text col-md-5">{{ task.name }}</div class="event_text col-md-5">
     <a class="btn btn-info col-md-3 event_button" href="{% url 'assistapp:delete_task' pk=task.pk  %}">Delete Task</a>
     <a class='btn btn-info col-md-2 event_button' href="{% url 'assistapp:show_edit_task' id=task.id %}">Edit Task</a>
 </div>
+
+{% comment %} Task priority, notes, and due date  {% endcomment %}
 <div class="task_list_box">
     <div class="row">
         <span class="task_text">Priority: {{ task.priority }}</span>
@@ -25,14 +28,16 @@
     </div>
 </div>
 
+{% comment %} Task image (if there is one) {% endcomment %}
 {% if task.image %}
-<div class="row image_style">
+<div class="row image_style mt-3">
     <img class="image_direct" src="{{task.image.url}}">
 </div>
 {% endif %}
 <hr>
 {% endfor %}
 
+{% comment %} Add a task or return to my events  {% endcomment %}
 <div class=" row justify-content-evenly">
     <a class='col-md-4 btn btn-info task_controls' href="{% url 'assistapp:my_events' %}">Back to my events</a>
     <a class="col-md-4 btn btn-info task_controls" href="{% url 'assistapp:show_add_task' event.id  %}">Add Task</a>
