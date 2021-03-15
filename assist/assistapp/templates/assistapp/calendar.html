@@ -1,39 +1,12 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
+{% extends 'assistapp/base.html' %}
 
-<head>
-    <!-- Fonts  -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+{% block content %}
+
     <!-- Vuetify Icons  -->
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
     <!-- Vuetify CSS  -->
     <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
-    <!-- Custom CSS  -->
-    <link rel="stylesheet" href="{% static 'assistapp/assist_style.css' %}">
-     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
-</head>
-
-<body>
-    <div class="row justify-content-between mt-3">
-        <span class="col-md-5">Welcome {{ user }}</span>
-        <a class="btn btn-primary col-md-2 me-4" href="{% url 'users:logout_user' %}">Logout</a>
-      </div>
-    <header class="mt-4">
-        <div class="row">
-          <span>Assist</span>
-        </div>
-  
-        <div class="row justify-content-around mt-5">
-          <a class="btn btn-primary col-md-3" href="{% url 'assistapp:show_calendar' %}">Calendar</a>
-          <a class="btn btn-primary col-md-3" href="{% url 'assistapp:my_events' %}">My Events</a>
-          <a class="btn btn-primary col-md-3" href="#">Help</a>
-  
-        </div>
-      </header>
     <div id="app" class="mt-5">
         <v-app id="inspire">
             <div>
@@ -46,9 +19,7 @@
                     <!-- Select dropdown; defaults to type month; populates with types  -->
                     <v-select v-model="type" :items="types" dense outlined hide-details class="ma-2" label="type">
                     </v-select>
-                    <!-- Determines the mode  -->
-                    <v-select v-model="mode" :items="modes" dense outlined hide-details label="event-overlap-mode"
-                        class="ma-2"></v-select>
+ 
                     <!-- Determines when the weekends are  -->
                     <v-select v-model="weekday" :items="weekdays" dense outlined hide-details label="weekdays"
                         class="ma-2"></v-select>
@@ -74,7 +45,7 @@
             </div>
         </v-app>
     </div>
-
+    
     <!-- Vue CDN  -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
     <!-- Vuetify CDN  -->
@@ -82,6 +53,7 @@
     <!-- Axios CDN  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <script>
+
         new Vue({
             el: '#app',
             vuetify: new Vuetify(),
@@ -100,21 +72,21 @@
                 ],
                 value: '',
                 events: [],
-                colors: ['blue', 'indigo', 'deep-purple', 'cyan', 'green', 'orange', 'grey darken-1'],
+                colors: [],
                 names: [],
             }),
             methods: {
-                getEvents: function ({start, end}) {
+                getEvents: function ({ start, end }) {
                     console.log(this.weekday, this.weekdays, this.type)
                     axios({
                         url: "{% url 'assistapp:get_events'%}",
                         method: 'get',
                     }).then(response => {
-                        this.events=response.data.events
+                        this.events = response.data.events
                         // this.names=['hello']
                         console.log(this.events)
                     })
-                        
+
                 },
                 getEventColor(event) {
                     return event.color
@@ -122,11 +94,5 @@
             },
         })
     </script>
-      {% comment %} Bootstrap JS CDN {% endcomment %}
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-        crossorigin="anonymous"></script>
-    </body>
-</body>
 
-</html> 
+{% endblock %}

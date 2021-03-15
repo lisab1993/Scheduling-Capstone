@@ -1,7 +1,7 @@
 {% extends 'users/user_base.html' %}
 {% block content %}
 
-<h1>Login</h1>
+<div class="title_text">Login</div>
 
 {% if message %}
 <div class="row">{{ message }}</div>
@@ -10,19 +10,19 @@
 <form action="{% url 'users:login_user' %}" method='post'>
     {% csrf_token %}
 
-    <div class="mb-3">
-        <label class="form-label" for="username">Please enter your username</label>
+    <div class="mb-3 row">
+        <label class="form-label p-0" for="username">Please enter your username</label>
         <input class="form-control" type="text" name='username' id='username'>
     </div>
 
-    <div class="mb-3">
-        <label class="form-label" for="password">Please enter your password</label>
+    <div class="mb-3 row">
+        <label class="form-label p-0" for="password">Please enter your password</label>
         <input class="form-control " type="password" name='password' id='password'>
     </div>
 
-    <div class="row">
-        <button type='submit' class="btn btn-primary col-md-2">Login</button>
-        <span class="col-md-6">Don't have an account? Create one <a href="{% url 'users:registration_page' %}">here</a></span>
+    <div class="mb-3 row">
+        <button type='submit' class="btn edit_button col-md-2">Login</button>
+        <span class="col-md-6 tiny_text">Don't have an account? Create one <a class="link" href="{% url 'users:registration_page' %}">here</a></span>
     </div>
 </form>
 

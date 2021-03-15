@@ -1,25 +1,12 @@
 header {
-    background-color: #e47e9b;
+    background-color: #68d3af;
 }
 
-/* html, body {
-    margin: 0;
-    height: 100%;
-    background-color: #f8b19544;
-    background-position: cover;
-} */
-
-html {
-    width: 100vw;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    background-color: #f8b19544;
-    height: 100%;
-    margin: 0;
-    padding: 0;
+body, html {
+    overflow: auto;
+    min-height: 100vh;
+    background-image: url('images/background.webp');
+    background-size: cover;
 }
 
 label {
@@ -50,15 +37,24 @@ label {
     font-size: 50px;
     margin-left: 50px;
     font-style: italic;
-    color: #1f4464;
 }
 
 /* buttons in the base header; also used in login/logout  */
 .header_button {
     font-family: 'RocknRoll One', sans-serif;
-    background-color: #6C5B7B;
-    border-color: #413749;
-    color: whitesmoke;
+    background-color: #FDC7D7 !important;
+    color: black;
+    text-decoration: none;
+    border: 1px solid #FDC7D7;
+    border-radius: 5px;
+    height: 40px !important;
+    text-align: center;
+}
+
+.header_button:hover {
+    background-color: #FF9DE6;
+    box-shadow: rgb(27, 27, 27);
+    border-color: #FF9DE6;
 }
 
 
@@ -66,7 +62,7 @@ label {
 /* Page titles, such as My Events  */
 .title_text {
     font-family: 'Paprika', cursive;
-    font-size: 35px;
+    font-size: 40px;
     font-weight: bold;
 }
 
@@ -84,22 +80,6 @@ label {
     font-size: 15px;
 }
 
-/* Text within editing and adding forms  */
-.edit_text {
-    font-family: 'RocknRoll One', sans-serif;
-    font-size: 15px;
-    background-color: #97afca79;
-}
-
-/* Controls the border around the text when clicked  */
-.edit_text:focus {
-    font-family: 'RocknRoll One', sans-serif;
-    font-size: 15px;
-    background-color: #97afca79;
-    outline: #54a0be88 solid 10px;
-}
-
-
         /* Misc.  */
 /* Controls how the image appears  */
 .image_direct {
@@ -107,6 +87,7 @@ label {
     border: 1px solid slategray;
     border-radius: 5px;
     max-width: 350px;
+    margin-left: 13px;
 }
 
 /* The box around the details within the task_list.html template  */
@@ -114,55 +95,79 @@ label {
     border: 1px solid black;
     border-radius: 5px;
     padding: 10px;
-    width: 375px;
-    margin-left: 20px;
+    width: 350px;
 }
 
 /* The vertical line on edit_task.html  */
 .image_divider {
-    border-left: 6px solid black;
+    border-left: 1px solid black;
     max-height: 500px;
 }
 
 /* Clears the picture on edit_task.html */
-.clear_picture {
+.tiny_text {
     font-family: 'Paprika', cursive !important;
     color: rgb(0, 0, 0);
 }
 
+/* Used for links in <a></a>  */
+.link {
+    text-decoration: none;
+    color: #9b5188;
+    font-weight: bold;
+}
+
+.form-control {
+    background-color: #68d3af4b;
+    font-family: 'Paprika', cursive;
+}
+.form-select {
+    background-color: #68d3af4b;
+    font-family: 'Paprika', cursive;  
+}
+
+.form-control:focus {
+    border-color: #68d3af;
+    outline: 0;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+}
+
+
          /* Buttons (header buttons are in the header section) */
 /* CRUD operation buttons for events and tasks  */
+
+
 .event_button {
-    font-family: 'RocknRoll One', sans-serif;
-    background-color: #82A0C2;
-    border-color: #82A0C2;
+    font-family: 'RocknRoll One', sans-serif !important;
+    background-color: goldenrod;
     font-size: 16px;
     margin: auto 10px 15px auto;
+}
+
+.event_button:hover {
+    background-color: goldenrod;
+    box-shadow: inset 0 3px 5px rgba(135, 176, 180, 0.616);
 }
 
 /* Button to add an event or task */
 .add_event_button {
     font-family: 'RocknRoll One', sans-serif;
-    background-color: #6C5B7B;
-    border-color: #413749;
-    color: whitesmoke;
+    background-color: #67c967;
     width: 300px;
 }
 
 /* Submit button to edit and add tasks and events  */
 .edit_button {
-    font-family: 'RocknRoll One', sans-serif;
-    background-color: #6C5B7B;
-    border-color: #413749;
-    color: whitesmoke;
+    font-family: 'RocknRoll One', sans-serif !important;
+    background-color: goldenrod;
+    border-color: goldenrod;
+    color: black;
 }
-
 
 /* Buttons to add a task or event  */
 .task_controls {
     font-family: 'RocknRoll One', sans-serif;
-    background-color: #6C5B7B;
-    border-color: #413749;
-    color: whitesmoke;
+    background-color: #67c967;
+    border-color: #67c967;
 }
 

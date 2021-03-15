@@ -11,16 +11,16 @@
         <a class='event_text' href="{% url 'assistapp:task_list' event_id=event.id %}">{{event.title}}</a>
     </div>
     {% comment %} View the event's tasks, edit the event, or delete the event  {% endcomment %}
-    <a href="{% url 'assistapp:task_list' event_id=event.id %}" class="btn btn-info col-md-2 event_button">View Tasks</a>
-    <a href="{% url 'assistapp:show_edit_event' pk=event.pk %}" class="btn btn-info col-md-2 event_button">Edit</a>
-    <a href="{% url 'assistapp:delete_event' pk=event.pk %}" class="btn btn-info col-md-2 event_button">Delete</a>
+    <a href="{% url 'assistapp:task_list' event_id=event.id %}" class="btn col-md-2 event_button">More Info</a>
+    <a href="{% url 'assistapp:show_edit_event' pk=event.pk %}" class="btn col-md-2 event_button">Edit</a>
+    <a href="{% url 'assistapp:delete_event' pk=event.pk %}" class="btn col-md-2 event_button">Delete</a>
     <hr>
 </div>
 {% endfor %}
 
 {% comment %} Submit button  {% endcomment %}
 <div class="text-center">
-    <a class="btn btn-info add_event_button" href="{% url 'assistapp:show_add_event' %}">Add an Event</a>
+    <a class="btn add_event_button" href="{% url 'assistapp:show_add_event' %}">Add an Event</a>
 </div>
 
 {% endblock %}

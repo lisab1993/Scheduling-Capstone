@@ -1,30 +1,30 @@
 {% extends 'assistapp/base.html' %}
 
 {% block content %}
-<h2>add_task.html</h2>
+<div class="title_text">Add a Task</div>
 <form action="{% url 'assistapp:add_task' event.id %}" method='post' enctype="multipart/form-data">
     {% csrf_token %}
     {% comment %} Name your task  {% endcomment %}
-    <div class="mb-3">
-        <label for="taskName" class="form-label">Task Name</label>
+    <div class="mb-3 row">
+        <label for="taskName" class="form-label p-0">Task Name</label>
         <input name="name" type="text" class="form-control" id="taskName">
     </div>
 
     {% comment %} Task due date  {% endcomment %}
-    <div class="mb-3">
-        <label for="dueDate" class="form-label">Due Date</label>
+    <div class="mb-3 row">
+        <label for="dueDate" class="form-label p-0">Due Date</label>
         <input name="due_date" type="datetime-local" class="form-control" id="dueDate">
     </div>
 
     {% comment %} Task notes  {% endcomment %}
-    <div class="mb-3">
-        <label for="taskNotes" class="form-label">Notes</label>
+    <div class="mb-3 row">
+        <label for="taskNotes" class="form-label p-0">Notes</label>
         <input name="notes" type="text" class="form-control" id="taskNotes">
     </div>
 
     {% comment %} Priority selection  {% endcomment %}
-    <div>
-        <label for="taskNotes" class="form-label">Priority</label>
+    <div class="mb-3 row">
+        <label for="taskNotes" class="form-label p-0">Priority</label>
         <select name="priority" class="form-select" aria-label="Priority Selection">
             <option value="High">High</option>
             <option selected value="Medium">Medium</option>
@@ -33,13 +33,15 @@
     </div>
 
     {% comment %} Image selection  {% endcomment %}
-    <div class="mb-3">
-        <label for="taskImage" class="form-label">Image</label>
+    <div class="mb-3 row">
+        <label for="taskImage" class="form-label p-0">Image</label>
         <input name="image" type="file" accept="image/*" class="form-control" id="taskImage">
     </div>
 
     {% comment %} Submit button  {% endcomment %}
-    <button class="btn btn-info" type="submit">Go</button>
+    <div class="row">
+        <button class="btn task_controls col-md-2" type="submit">Add</button>
+    </div>
 </form>
 
 {% endblock %}
