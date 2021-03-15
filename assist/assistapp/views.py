@@ -6,6 +6,9 @@ from .models import Event, EventTask, Priority
 from django.contrib.auth.models import User
 import calendar
 from datetime import datetime
+import pytz
+from django.utils import timezone
+
 
 # DON'T FORGET TO CHANGE THE HOMEPAGE TO CALENDAR VIEW
 # MY_EVENTS IS BEING USED AS A PLACEHOLDER AS IT'S BEING BUILT FIRST
@@ -19,7 +22,7 @@ def my_events(request):
     '''Displays all events for a user'''
     user = authenticate(username=request.user, password=request.user)
     logged_in = request.user
-    user_events = Event.objects.filter(user=logged_in)
+    user_events = Event.objects.filter(user=logged_in).order_by('start_date')
     # put it in the context object to render on the my_events page
     context = {
         'user_events': user_events,
@@ -82,6 +85,8 @@ def edit_event(request, pk):
 
 #########################################################
 # EventTask-related views
+
+
 @login_required
 def task_list(request, event_id):
     '''A list of tasks for a specific event'''
@@ -152,7 +157,7 @@ def edit_task(request, id):
     task.due_date = request.POST['due_date']
     task.priority_id = request.POST['priority_id']
     task.notes = request.POST['notes']
-    
+
     if 'clear_image' in request.POST:
         task.image = None
     elif 'image' in request.FILES:
@@ -172,6 +177,12 @@ def show_calendar(request):
     return render(request, 'assistapp/calendar.html')
 
 
+def convert_to_localtime(utctime):
+    fmt = '%Y-%m-%d %X'
+    utc = utctime.replace(tzinfo=pytz.UTC)
+    localtz = utc.astimezone(timezone.get_current_timezone())
+    return localtz.strftime(fmt)
+
 @login_required
 def get_events(request):
     user = request.user
@@ -180,10 +191,9 @@ def get_events(request):
     for event in events:
         events_list.append({
             'event-name': event.title,
-            'start': event.start_date.strftime('%Y-%m-%d %H:%M'),
-            'end': event.end_date.strftime('%Y-%m-%d %H:%M'),
+            'start': convert_to_localtime(event.start_date),
+            'end': convert_to_localtime(event.end_date),
             'color': 'green',
-            'name': event.title
+            'name': event.title,
         })
-    # print(events_list)
     return JsonResponse({'events': events_list})

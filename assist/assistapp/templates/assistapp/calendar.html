@@ -45,7 +45,6 @@
             </div>
         </v-app>
     </div>
-    
     <!-- Vue CDN  -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
     <!-- Vuetify CDN  -->
@@ -77,14 +76,13 @@
             }),
             methods: {
                 getEvents: function ({ start, end }) {
-                    console.log(this.weekday, this.weekdays, this.type)
                     axios({
                         url: "{% url 'assistapp:get_events'%}",
                         method: 'get',
                     }).then(response => {
                         this.events = response.data.events
+                        
                         // this.names=['hello']
-                        console.log(this.events)
                     })
 
                 },
