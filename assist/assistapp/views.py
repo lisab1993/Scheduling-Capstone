@@ -4,10 +4,12 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
 from .models import Event, EventTask, Priority
 from django.contrib.auth.models import User
-import calendar
 from datetime import datetime
-import pytz
+import pytz, datetime
 from django.utils import timezone
+from datetime import date
+
+
 
 
 # DON'T FORGET TO CHANGE THE HOMEPAGE TO CALENDAR VIEW
@@ -83,9 +85,25 @@ def edit_event(request, pk):
         event.save()
     return redirect('assistapp:my_events')
 
+
+@login_required
+def show_past_events(request):
+    '''Renders events that already happened'''
+    user = authenticate(username=request.user, password=request.user)
+    logged_in = request.user
+    today = timezone.now()
+    print(today)
+    past_dates = []
+    user_events = Event.objects.filter(user=logged_in).order_by('start_date')
+    for event in user_events:
+        if event.end_date < today:
+            past_dates.append(event)
+    return render(request, 'assistapp/past_events.html', {'past_dates':past_dates})
+
+
+
 #########################################################
 # EventTask-related views
-
 
 @login_required
 def task_list(request, event_id):
@@ -182,6 +200,7 @@ def convert_to_localtime(utctime):
     utc = utctime.replace(tzinfo=pytz.UTC)
     localtz = utc.astimezone(timezone.get_current_timezone())
     return localtz.strftime(fmt)
+
 
 @login_required
 def get_events(request):
