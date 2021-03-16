@@ -1,18 +1,18 @@
 {% extends 'assistapp/base.html' %}
 
 {% block content %}
-<div class="title_text">Add a Task</div>
+<div class="title_text text-center my-3">Add a task to {{event.title}}</div>
 <form action="{% url 'assistapp:add_task' event.id %}" method='post' enctype="multipart/form-data">
     {% csrf_token %}
     {% comment %} Name your task  {% endcomment %}
     <div class="mb-3 row">
-        <label for="taskName" class="form-label p-0">Task Name</label>
-        <input name="name" type="text" class="form-control" id="taskName">
+        <label for="taskName" class="form-label p-0">Task Name<span class="tiny_text align-top">*required</span></label>
+        <input name="name" type="text" class="form-control" id="taskName" required>
     </div>
 
     {% comment %} Task due date  {% endcomment %}
     <div class="mb-3 row">
-        <label for="dueDate" class="form-label p-0">Due Date</label>
+        <label for="dueDate" class="form-label p-0">Due Date<span class="tiny_text align-top">*required</span></label>
         <input name="due_date" type="datetime-local" class="form-control" id="dueDate">
     </div>
 

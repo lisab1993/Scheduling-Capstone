@@ -4,19 +4,25 @@
 {% comment %} Page Title  {% endcomment %}
 <h2 class="title_text text-center mt-2 mb-4">My Events</h2>
 
-{% for event in upcoming_dates %}
-<div class="row">
-    {% comment %} Event titles. Clicking on them leads to the task_list.html for that event {% endcomment %}
-    <div class="col-md-5">
-        <a class='event_text' href="{% url 'assistapp:task_list' event_id=event.id %}">{{event.title}}</a>
+{% if upcoming_dates %}
+    {% for event in upcoming_dates %}
+    <div class="row">
+        {% comment %} Event titles. Clicking on them leads to the task_list.html for that event {% endcomment %}
+        <div class="col-md-5">
+            <a class='event_text' href="{% url 'assistapp:task_list' event_id=event.id %}">{{event.title}}</a>
+        </div>
+        {% comment %} View the event's tasks, edit the event, or delete the event  {% endcomment %}
+        <a href="{% url 'assistapp:task_list' event_id=event.id %}" class="btn col-md-2 event_button">More Info</a>
+        <a href="{% url 'assistapp:show_edit_event' pk=event.pk %}" class="btn col-md-2 event_button">Edit</a>
+        <a href="{% url 'assistapp:delete_event' pk=event.pk %}" class="btn col-md-2 event_button">Delete</a>
+        <hr>
     </div>
-    {% comment %} View the event's tasks, edit the event, or delete the event  {% endcomment %}
-    <a href="{% url 'assistapp:task_list' event_id=event.id %}" class="btn col-md-2 event_button">More Info</a>
-    <a href="{% url 'assistapp:show_edit_event' pk=event.pk %}" class="btn col-md-2 event_button">Edit</a>
-    <a href="{% url 'assistapp:delete_event' pk=event.pk %}" class="btn col-md-2 event_button">Delete</a>
-    <hr>
+    {% endfor %}
+{% else %}
+<div class="row">
+    <p>You don't have any events. Click on "Add an Event" to get started, or "Help" for a tutorial.</p>
 </div>
-{% endfor %}
+{% endif %}
 
 {% comment %} Submit button  {% endcomment %}
 <div class="text-center row justify-content-between">

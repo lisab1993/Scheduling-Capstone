@@ -7,21 +7,15 @@ from django.contrib.auth.models import User
 from datetime import datetime
 import pytz, datetime
 from django.utils import timezone
-from datetime import date
 
 
 
-
-# DON'T FORGET TO CHANGE THE HOMEPAGE TO CALENDAR VIEW
-# MY_EVENTS IS BEING USED AS A PLACEHOLDER AS IT'S BEING BUILT FIRST
-# STILL NEED TO ADD SECURITY SO USERS ONLY SEE THEIR OWN STUFF
 
 # Event-related views
 
-
 @login_required
 def my_events(request):
-    '''Displays all events for a user'''
+    '''Displays all current and upcoming events for a user'''
     user = authenticate(username=request.user, password=request.user)
     logged_in = request.user
     today = timezone.now()
@@ -185,20 +179,20 @@ def edit_task(request, id):
         image = request.FILES['image']
         task.image = image
     task.save()
-    # tell the program to return to the task list at the task's event id
     return redirect('assistapp:task_list', event_id=task.event_id)
 
-    # path('<int:id>/edit_task/', views.edit_task, name="edit_task")
-
+#################################################
 # Calendar
 
 
 @login_required
 def show_calendar(request):
+    '''Renders the template for the calendar'''
     return render(request, 'assistapp/calendar.html')
 
 
 def convert_to_localtime(utctime):
+    '''Converts UTC times to local times for the calendar'''
     fmt = '%Y-%m-%d %X'
     utc = utctime.replace(tzinfo=pytz.UTC)
     localtz = utc.astimezone(timezone.get_current_timezone())
@@ -207,6 +201,7 @@ def convert_to_localtime(utctime):
 
 @login_required
 def get_events(request):
+    '''Sends event information to the calendar'''
     user = request.user
     events = Event.objects.filter(user=user)
     events_list = []

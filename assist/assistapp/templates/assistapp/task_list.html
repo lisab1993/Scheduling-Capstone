@@ -2,45 +2,56 @@
 
 {% block content %}
 
-{% comment %} Event the tasks belong to  {% endcomment %}
+{% comment %} Event the tasks belong to {% endcomment %}
 <h1 class="title_text text-center mt-2 mb-4">{{ event.title }}</h1>
-<div class="text-center mb-3"><a class="col-md-4 btn task_controls text-center" href="{% url 'assistapp:show_add_task' event.id  %}">Add a Task</a></div>
+<div class="text-center mb-3"><a class="col-md-4 btn task_controls text-center"
+        href="{% url 'assistapp:show_add_task' event.id  %}">Add a Task</a></div>
 
-
-
+{% if event.tasks.all %}
 {% for task in event.tasks.all %}
-{% comment %} Task name, delete task, edit task  {% endcomment %}
+{% comment %} Task name, edit, and delete buttons {% endcomment %}
 <div class="row">
     <div class="event_text col-md-5">{{ task.name }}</div class="event_text col-md-5">
     <a class="btn col-md-3 event_button" href="{% url 'assistapp:delete_task' pk=task.pk  %}">Delete Task</a>
     <a class='btn col-md-2 event_button' href="{% url 'assistapp:show_edit_task' id=task.id %}">Edit Task</a>
 </div>
 
-{% comment %} Task priority, notes, and due date  {% endcomment %}
-<div class="task_list_box">
-    <div class="row">
-        <span class="task_text">Priority: {{ task.priority }}</span>
+{% comment %} Priority, notes, and due date {% endcomment %}
+<div class="row">
+    <div class="col-md-6 mt-3">
+        <div class="task_list_box">
+            <div class="row">
+                <span class="task_text">Due Date: {{ task.due_date }}</span>
+            </div>
+            <div class="row">
+                <span class="task_text">Priority: {{ task.priority }}</span>
+            </div>
+            <div class="row">
+                <span class="task_text">Notes: {{ task.notes }}</span>
+            </div>
+        </div>
     </div>
 
-    <div class="row">
-        <span class="task_text">Notes: {{ task.notes }}</span>
+        {% comment %} Task Image {% endcomment %}
+    <div class="row col-md-6">
+        {% if task.image %}
+        <div class="row mt-3">
+            <img class="image_direct" src="{{task.image.url}}">
+        </div>
+        {% endif %}
     </div>
-
-    <div class="row">
-        <span class="task_text">Due Date: {{ task.due_date }}</span>
-    </div>
+    <hr class="mt-2">
 </div>
 
-{% comment %} Task image (if there is one) {% endcomment %}
-{% if task.image %}
-<div class="row mt-3 ">
-    <img class="image_direct" src="{{task.image.url}}">
-</div>
-{% endif %}
-<hr>
 {% endfor %}
 
-
+{% comment %} Message to show if there are no tasks for the selected event {% endcomment %}
+{% else %}
+<div>
+    <p>You don't have any tasks for this event. Click on "Add a Task" to keep going, or "Help" for a tutorial.
+    </p>
+</div>
+{% endif %}
 
 
 {% endblock %}

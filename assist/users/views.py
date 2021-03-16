@@ -28,7 +28,7 @@ def register_user(request):
     # create the user with their username and password
     user = User.objects.create_user(username=username, password=password)
     # return to the login page
-    return render(request, 'users/login_page')
+    return HttpResponseRedirect(reverse('users:login_page'))
 
 
 def login_page(request):
@@ -49,7 +49,8 @@ def login_user(request):
         login(request, user)
         return HttpResponseRedirect(reverse('assistapp:my_events'))
     else:
-        return HttpResponseRedirect(reverse('users:login_page'))
+        return render(request, 'users/login.html', {'message': 'The username or password is incorrect'})
+
 def logout_user(request):
     logout(request)
     return HttpResponseRedirect(reverse('users:login_page'))
