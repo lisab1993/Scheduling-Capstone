@@ -24,12 +24,15 @@ def my_events(request):
     '''Displays all events for a user'''
     user = authenticate(username=request.user, password=request.user)
     logged_in = request.user
+    today = timezone.now()
+    upcoming_dates = []
     user_events = Event.objects.filter(user=logged_in).order_by('start_date')
     # put it in the context object to render on the my_events page
-    context = {
-        'user_events': user_events,
-    }
-    return render(request, 'assistapp/my_events.html', context)
+    for event in user_events:
+        if event.end_date >= today:
+            upcoming_dates.append(event)
+    return render(request, 'assistapp/my_events.html', {'upcoming_dates':upcoming_dates})
+
 
 
 @login_required
