@@ -28,6 +28,7 @@ class EventTask(models.Model):
     priority = models.ForeignKey(Priority, on_delete=models.PROTECT, related_name='tasks', null=True)
     notes = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='images/', null=True, blank=True)
+    complete = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name + ' - ' + self.event.title

@@ -91,6 +91,11 @@ label {
     border-radius: 5px;
     max-width: 350px;
     margin-left: 13px;
+    text-align: center;
+    
+}
+.image_div {
+
 }
 
 /* The box around the details within the task_list.html template  */

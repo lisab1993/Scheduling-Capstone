@@ -20,6 +20,8 @@ urlpatterns = [
     path('<int:pk>/delete_task/', views.delete_task, name="delete_task"),
     path('<int:id>/show_edit_task/', views.show_edit_task, name="show_edit_task"),
     path('<int:id>/edit_task/', views.edit_task, name="edit_task"),
+    path('<int:id>/complete_task', views.complete_task, name="complete_task"),
+    path('<int:id>/reverse_complete_task', views.reverse_complete_task, name="reverse_complete_task"),
     #Calendar related
     path('show_calendar/', views.show_calendar, name="show_calendar"),
     path('get_events/', views.get_events, name="get_events"),

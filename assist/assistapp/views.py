@@ -98,7 +98,6 @@ def show_past_events(request):
     return render(request, 'assistapp/past_events.html', {'past_dates':past_dates})
 
 
-
 #########################################################
 # EventTask-related views
 
@@ -180,6 +179,20 @@ def edit_task(request, id):
         task.image = image
     task.save()
     return redirect('assistapp:task_list', event_id=task.event_id)
+
+@login_required
+def complete_task(request, id):
+    task = EventTask.objects.get(id=id)
+    task.complete = True
+    task.save()
+    return HttpResponseRedirect(reverse('assistapp:task_list', args=[task.event_id]))
+
+def reverse_complete_task(request, id):
+    task = EventTask.objects.get(id=id)
+    task.complete = False
+    task.save()
+    return HttpResponseRedirect(reverse('assistapp:task_list', args=[task.event_id]))
+
 
 #################################################
 # Calendar

@@ -2,23 +2,29 @@
 
 {% block content %}
 
-{% comment %} Event the tasks belong to {% endcomment %}
+{% comment %} Task Title {% endcomment %}
 <h1 class="title_text text-center mt-2 mb-4">{{ event.title }}</h1>
 <div class="text-center mb-3"><a class="col-md-4 btn task_controls text-center"
         href="{% url 'assistapp:show_add_task' event.id  %}">Add a Task</a></div>
 
+
 {% if event.tasks.all %}
+
+<h2>Incomplete Tasks</h2>
 {% for task in event.tasks.all %}
-{% comment %} Task name, edit, and delete buttons {% endcomment %}
+{% if task.complete == False %}
+
+{% comment %} Task Name and Controls {% endcomment %}
 <div class="row">
     <div class="event_text col-md-5">{{ task.name }}</div class="event_text col-md-5">
+        <a class='btn col-md-3 event_button' href="{% url 'assistapp:show_edit_task' id=task.id %}">Edit Task</a>
     <a class="btn col-md-3 event_button" href="{% url 'assistapp:delete_task' pk=task.pk  %}">Delete Task</a>
-    <a class='btn col-md-2 event_button' href="{% url 'assistapp:show_edit_task' id=task.id %}">Edit Task</a>
 </div>
 
-{% comment %} Priority, notes, and due date {% endcomment %}
+{% comment %} Task Box {% endcomment %}
 <div class="row">
     <div class="col-md-6 mt-3">
+        {% comment %} Task Box (due date, priority, status) {% endcomment %}
         <div class="task_list_box">
             <div class="row">
                 <span class="task_text">Due Date: {{ task.due_date }}</span>
@@ -27,22 +33,97 @@
                 <span class="task_text">Priority: {{ task.priority }}</span>
             </div>
             <div class="row">
-                <span class="task_text">Notes: {{ task.notes }}</span>
+                {% if task.complete == False %}
+                <span class="task_text">Status: Incomplete</span>
+                {% else %}
+                <span class="task_text">Status: Complete</span>
+                {% endif %}
             </div>
         </div>
-    </div>
-
-        {% comment %} Task Image {% endcomment %}
-    <div class="row col-md-6">
+        {% comment %} Image {% endcomment %}
         {% if task.image %}
         <div class="row mt-3">
             <img class="image_direct" src="{{task.image.url}}">
         </div>
         {% endif %}
+        {% comment %} Complete/Incomplete button {% endcomment %}
+        <div class="mt-4 ms-5">
+            {% if task.complete == False %}
+            <a href="{% url 'assistapp:complete_task' task.id %}" class="btn event_button">Mark As Complete</a>
+            {% else %}
+            <a href="{% url 'assistapp:reverse_complete_task' task.id %}" class="btn event_button">Mark As
+                Incomplete</a>
+            {% endif %}
+        </div>
     </div>
-    <hr class="mt-2">
+
+    {% comment %} Task Notes {% endcomment %}
+    <div class="row col-md-6 ">
+        <span class="task_text">Notes: {{ task.notes }}</span>
+    </div>
+</div>
+<hr class="mt-2">
+{% endif %}
+{% comment %} Ends for tasks in event.tasks.all  {% endcomment %}
+{% endfor %}
+
+
+
+<h2>Complete Tasks</h2>
+{% for task in event.tasks.all %}
+{% if task.complete == True %}
+{% comment %} Task name, edit, and delete buttons {% endcomment %}
+<div class="row">
+    <div class="event_text col-md-5">{{ task.name }}</div class="event_text col-md-5">
+        <a class='btn col-md-3 event_button' href="{% url 'assistapp:show_edit_task' id=task.id %}">Edit Task</a>
+    <a class="btn col-md-3 event_button" href="{% url 'assistapp:delete_task' pk=task.pk  %}">Delete Task</a>
 </div>
 
+{% comment %} Priority, notes, and due date {% endcomment %}
+<div class="row">
+    <div class="col-md-6 mt-3">
+        {% comment %} Task Box (due date, priority, status) {% endcomment %}
+        <div class="task_list_box">
+            <div class="row">
+                <span class="task_text">Due Date: {{ task.due_date }}</span>
+            </div>
+            <div class="row">
+                <span class="task_text">Priority: {{ task.priority }}</span>
+            </div>
+            <div class="row">
+                {% if task.complete == False %}
+                <span class="task_text">Status: Incomplete</span>
+                {% else %}
+                <span class="task_text">Status: Complete</span>
+                {% endif %}
+            </div>
+        </div>
+        {% comment %} Image {% endcomment %}
+        {% if task.image %}
+        <div class="row mt-3">
+            <img class="image_direct" src="{{task.image.url}}">
+        </div>
+        {% endif %}
+        {% comment %} Complete/Incomplete button {% endcomment %}
+        <div class="mt-4 ms-5">
+            {% if task.complete == False %}
+            <a href="{% url 'assistapp:complete_task' task.id %}" class="btn event_button">Mark As Complete</a>
+            {% else %}
+            <a href="{% url 'assistapp:reverse_complete_task' task.id %}" class="btn event_button">Mark As
+                Incomplete</a>
+            {% endif %}
+        </div>
+ 
+    </div>
+
+    {% comment %} Task Notes {% endcomment %}
+    <div class="row col-md-6 ">
+        <span class="task_text">Notes: {{ task.notes }}</span>
+    </div>
+</div>
+<hr class="mt-2">
+{% endif %}
+{% comment %} Ends for tasks in event.tasks.all  {% endcomment %}
 {% endfor %}
 
 {% comment %} Message to show if there are no tasks for the selected event {% endcomment %}
@@ -51,6 +132,7 @@
     <p>You don't have any tasks for this event. Click on "Add a Task" to keep going, or "Help" for a tutorial.
     </p>
 </div>
+{% comment %} Ends the search for existing tasks {% endcomment %}
 {% endif %}
 
 
