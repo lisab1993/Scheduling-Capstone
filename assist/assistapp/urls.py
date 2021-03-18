@@ -25,5 +25,7 @@ urlpatterns = [
     #Calendar related
     path('show_calendar/', views.show_calendar, name="show_calendar"),
     path('get_events/', views.get_events, name="get_events"),
+    #Help 
+    path('show_help', views.show_help, name="show_help"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -224,3 +224,10 @@ def get_events(request):
             'name': event.title,
         })
     return JsonResponse({'events': events_list})
+
+#################################################
+# Help Page
+@login_required
+def show_help(request):
+    '''Displays the help page'''
+    return render(request, 'assistapp/help.html')

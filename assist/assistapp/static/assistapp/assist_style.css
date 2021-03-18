@@ -56,9 +56,14 @@ label {
 }
 
 .header_button:hover {
-    background-color: #FF9DE6;
-    box-shadow: rgb(27, 27, 27);
-    border-color: #26351a5b;
+    font-family: 'RocknRoll One', sans-serif !important;
+    background-color: #ac8591e3 !important;
+    color: black !important;
+    text-decoration: none !important;
+    border: 1px solid #26351a5b !important;
+    border-radius: 5px !important;
+    height: 40px !important;
+    text-align: center !important;
     box-shadow: 5px 5px #26351a5b
 }
 
@@ -71,6 +76,7 @@ label {
     font-weight: bold;
 }
 
+/* Incomplete and complete tasks on the task list */
 .complete_title {
     font-family: 'RocknRoll One', sans-serif;
     font-size: 30px;
@@ -92,6 +98,7 @@ label {
 .task_text {
     font-family: 'RocknRoll One', sans-serif;
     font-size: 15px;
+    text-align: center;
 }
 
         /* Misc.  */
@@ -102,8 +109,11 @@ label {
     border-radius: 5px;
     max-width: 350px;
     margin-left: 13px;
-    text-align: center;
-    
+    text-align: center; 
+}
+
+.help_image {
+    max-width: 800px;
 }
 
 /* The box around the details within the task_list.html template  */
@@ -128,7 +138,6 @@ label {
 }
 
 
-
 /* Used for links in <a></a>  */
 .link {
     text-decoration: none;
@@ -141,34 +150,38 @@ label {
     font-family: 'Paprika', cursive;
     box-shadow: 5px 5px #26351a5b
 }
-.form-select {
-    background-color: #68d3af4b;
-    font-family: 'Paprika', cursive;  
-    box-shadow: 5px 5px #26351a5b
-}
 
 .form-control:focus {
     border-color: #68d3af;
     outline: 0;
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
 }
-
+.form-select {
+    background-color: #68d3af4b;
+    font-family: 'Paprika', cursive;  
+    box-shadow: 5px 5px #26351a5b
+}
+.form-select:focus {
+    background-color: #ffffff;
+    font-family: 'Paprika', cursive;  
+    box-shadow: 5px 5px #26351a5b
+}
 
          /* Buttons (header buttons are in the header section) */
 /* CRUD operation buttons for events and tasks  */
-
-
 .event_button {
     font-family: 'RocknRoll One', sans-serif !important;
     background-color: rgb(218, 184, 32);
     font-size: 16px;
     margin: auto 10px 15px auto;
+    border: 1px solid #26351a5b !important;
     box-shadow: 5px 5px #352c1a5b
 }
 
 .event_button:hover {
-    background-color: rgb(218, 184, 32);
+    background-color: rgb(172, 136, 46);
     box-shadow: inset 0 3px 5px rgba(224, 222, 216, 0.616);
+    border: 1px solid #26351a5b !important;
     box-shadow: 5px 5px #352c1a5b
 }
 
@@ -176,24 +189,21 @@ label {
 .add_event_button {
     font-family: 'RocknRoll One', sans-serif;
     background-color: #68a768;
+    border: 1px solid #26351a5b !important;
     width: 300px;
-    box-shadow: 5px 5px #352c1a5b
+    box-shadow: 5px 5px #352c1a5b;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
-/* Submit button to edit and add tasks and events  */
-.edit_button {
-    font-family: 'RocknRoll One', sans-serif !important;
-    background-color: goldenrod;
-    border-color: goldenrod;
-    color: black;
-    box-shadow: 5px 5px #26351a5b
-}
-
-/* Buttons to add a task or event  */
-.task_controls {
+.add_event_button:hover {
     font-family: 'RocknRoll One', sans-serif;
-    background-color: #68a768;
-    border-color: #68a768;
-    box-shadow: 5px 5px #26351a5b
+    background-color: #518551;
+    border: 1px solid #26351a5b !important;
+    width: 300px;
+    box-shadow: 5px 5px #352c1a5b;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
-

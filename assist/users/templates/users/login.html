@@ -4,7 +4,7 @@
 <div class="title_text">Login</div>
 
 {% if message %}
-<div class="row">{{ message }}</div>
+<div class="row task_text">{{ message }}</div>
 {% endif %}
 
 <form action="{% url 'users:login_user' %}" method='post'>

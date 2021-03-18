@@ -1,0 +1,37 @@
+{% extends 'assistapp/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="complete_title">Welcome to Assist!</div>
+<p class="task_text">
+    The first thing you need to do to get started, is to add an event.
+    Events are the primary job you need to do. It could be grocery shopping,
+    spring cleaning, packing for a trip, or even planning a party! Each event
+    will have tasks assigned to it.
+    <br><br>
+    Tasks are the smaller jobs that need to happen to accomplish your event.
+    If your event is grocery shopping, your tasks might be the things
+    you need to buy. You can set a date for when your task is due,
+    decide if it's of high priority, and write as many notes as you'd like.
+    To manage tasks for an event, click on the gold button that says "Tasks".
+    There's no limit to the number of tasks you can have, so the sky is the limit!
+    <br><br>
+    The calendar button does exactly what you'd expect: it takes you to your calendar.
+    The calendar will show all of your events along with their start time.
+    <br><br>
+    So what happens after an event has passed?
+    <br>
+    Old events go into the past events category. From the events page,
+    click on the past events button to see them displayed in a list.
+    You will have the same control over past events (and their tasks) as
+    you do with new and upcoming events.
+    <br><br>
+    This is an event:
+    <br>
+    <img class="help_image mt-2" src="{% static 'assistapp/images/events_screenshot.PNG' %}" alt="M">
+    <br><br>
+    This is a task:
+    <br>
+    <img class="help_image mt-2" src="{% static 'assistapp/images/tasks_screenshot.PNG' %}" alt="">
+</p>
+{% endblock %}
