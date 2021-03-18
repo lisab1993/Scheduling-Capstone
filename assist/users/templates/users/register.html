@@ -18,24 +18,24 @@
 
 <form action="{% url 'users:register_user' %}" method='post'>
     {% csrf_token %}
-    <div class='mb-3'>
+    <div class='row mb-3'>
         <label for='inputUsername' class='form-label'>Please Enter Your Username</label>
         <input type='text' name='username' class='form-control' id='inputUsername'
             aria-describedby='Please enter your username.'>
     </div>
 
-    <div class='mb-3'>
+    <div class='row mb-3'>
         <label for='inputPassword' class='form-label'>Please Enter Your Password</label>
         <input type='password' name='password' class='form-control' id='inputPassword'
             aria-describedby='Please enter your password.'>
     </div>
 
-    <div class='mb-3'>
+    <div class='row mb-3'>
         <label for='verifyPassword' class='form-label'>Please Re-Enter Your Password</label>
         <input type='password' class='form-control' id='verifyPassword' aria-describedby='Please enter your password.'>
     </div>
     <div class="row">
-        <button type='submit' id="goButton" class='edit_button btn btn-primary col-md-2'>Go</button>
+        <button type='submit' id="goButton" class='btn login_button col-md-2'>Go</button>
         <span class="col-md-6 clear_picture">Already have an account? Login <a class="link" href="{% url 'users:login_page' %}">here</a></span>
     </div>
 </form>
