@@ -8,33 +8,31 @@
     {% csrf_token %}
 
     {% comment %} Task Name {% endcomment %}
-    <div class="mb-3 mt-4">
-        <label for="taskName" class="form-label">Task Name</label>
-        <input value="{{ task.name }}" name="name" type="text" class="form-control edit_text" id="taskName">
+    <div class="row mb-3 mt-4">
+        <label for="taskName" class="form-label">Task Name<span class="tiny_text align-top">*required</span></label>
+        <input value="{{ task.name }}" name="name" type="text" class="form-control edit_text" id="taskName" required>
     </div>
 
     {% comment %} Due Date {% endcomment %}
-    <div class="mb-3 mt-4">
-        <label for="dueDate" class="form-label">Due Date</label>
+    <div class="row mb-3 mt-4">
+        <label for="dueDate" class="form-label">Due Date<span class="tiny_text align-top">*required</span></label>
         <input value="{{ task.due_date|date:'Y-m-d\Th:i' }}" name="due_date" type="datetime-local"
-            class="form-control edit_text" id="dueDate">
+            class="form-control edit_text" id="dueDate" required>
     </div>
 
     {% comment %} Notes {% endcomment %}
-    <div class="mb-3 mt-4">
+    <div class="row mb-3 mt-4">
         <label for="taskNotes" class="form-label">Notes</label>
         <input value="{{ task.notes }}" name="notes" type="text" class="form-control edit_text" id="taskNotes">
     </div>
 
     {% comment %} Priority {% endcomment %}
-    <div class="mt-4">
-        <label for="taskPriority" class="form-label">Priority</label>
-        <select name="priority_id" id="taskPriority" class="form-select edit_text" aria-label="Priority Selection">
-            {% for priority in priorities %}
-            <option value="{{priority.id}}" {% if priority.id == task.priority.id %} selected {% endif %}>
-                {{ priority.urgency }}
-            </option>
-            {% endfor %}
+    <div class="row mb-3">
+        <label for="taskNotes" class="form-label p-0">Priority</label>
+        <select name="priority" class="form-select" aria-label="Priority Selection">
+            <option {% if task.priority == "High" %} selected {% endif %} value="High">High</option>
+            <option {% if task.priority == "Medium" %} selected {% endif %} value="Medium">Medium</option>
+            <option {% if task.priority == "Low" %} selected {% endif %} value="Low">Low</option>
         </select>
     </div>
 
@@ -57,8 +55,10 @@
             </div>   
     </div>
     {% else %}
-    <span class="row"><label for="taskImage" class="form-label">Image</label></span>
+    <div class="row">
+    <span><label for="taskImage" class="form-label">Image</label></span>
     <input type="file" value="" name="image" class="form-control edit_text" id="taskImage" accept="image/*">
+    </div>
     {% endif %}
     
 

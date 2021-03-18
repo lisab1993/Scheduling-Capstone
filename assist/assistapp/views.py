@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.http import HttpResponse, Http404, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
-from .models import Event, EventTask, Priority
+from .models import Event, EventTask
 from django.contrib.auth.models import User
 from datetime import datetime
 import pytz, datetime
@@ -129,11 +129,10 @@ def add_task(request, event_id):
         name = request.POST['name']
         event_id = event_id
         due_date = request.POST['due_date']
-        priority_urgency = request.GET.get('priority_urgency')
+        priority = request.POST['priority']
         notes = request.POST['notes']
         image = request.FILES.get('image')
-        task = EventTask(name=name, due_date=due_date, notes=notes,
-                         image=image, priority=priority_urgency, event_id=event_id)
+        task = EventTask(name=name, due_date=due_date, notes=notes, image=image, priority=priority, event_id=event_id)
         task.save()
         return HttpResponseRedirect(reverse('assistapp:task_list', args=[event_id]))
 
@@ -152,24 +151,20 @@ def show_edit_task(request, id):
     '''Render the template to edit a task'''
     # return HttpResponse("ok")
     task = get_object_or_404(EventTask, id=id)
-    priorities = Priority.objects.all()
     if task.event.user != request.user:
         raise Http404
-    context = {
-        'task': task,
-        'priorities': priorities
-    }
-    return render(request, 'assistapp/edit_task.html', context)
+    return render(request, 'assistapp/edit_task.html', {'task': task})
 
 
 @login_required
 def edit_task(request, id):
+    '''Edits a task and its fields'''
     task = get_object_or_404(EventTask, id=id)
     if task.event.user != request.user:
         raise Http404
     task.name = request.POST['name']
     task.due_date = request.POST['due_date']
-    task.priority_id = request.POST['priority_id']
+    task.priority = request.POST['priority']
     task.notes = request.POST['notes']
 
     if 'clear_image' in request.POST:
@@ -182,12 +177,14 @@ def edit_task(request, id):
 
 @login_required
 def complete_task(request, id):
+    '''Mark a task as complete'''
     task = EventTask.objects.get(id=id)
     task.complete = True
     task.save()
     return HttpResponseRedirect(reverse('assistapp:task_list', args=[task.event_id]))
 
 def reverse_complete_task(request, id):
+    '''Mark a task as complete'''
     task = EventTask.objects.get(id=id)
     task.complete = False
     task.save()

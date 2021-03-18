@@ -10,7 +10,7 @@
 
 {% if event.tasks.all %}
 
-<h2>Incomplete Tasks</h2>
+<h2 class="complete_title">Incomplete Tasks</h2>
 {% for task in event.tasks.all %}
 {% if task.complete == False %}
 
@@ -69,7 +69,7 @@
 
 
 
-<h2>Complete Tasks</h2>
+<h2 class="complete_title">Complete Tasks</h2>
 {% for task in event.tasks.all %}
 {% if task.complete == True %}
 {% comment %} Task name, edit, and delete buttons {% endcomment %}
@@ -129,7 +129,7 @@
 {% comment %} Message to show if there are no tasks for the selected event {% endcomment %}
 {% else %}
 <div>
-    <p>You don't have any tasks for this event. Click on "Add a Task" to keep going, or "Help" for a tutorial.
+    <p class="task_text">You don't have any tasks for this event. Click on "Add a Task" to keep going, or "Help" for a tutorial.
     </p>
 </div>
 {% comment %} Ends the search for existing tasks {% endcomment %}

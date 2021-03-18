@@ -20,11 +20,11 @@
     {% endfor %}
 {% else %}
 <div class="row">
-    <p>You don't have any events. Click on "Add an Event" to get started, or "Help" for a tutorial.</p>
+    <p class="task_text">You don't have any events. Click on "Add an Event" to get started, or "Help" for a tutorial.</p>
 </div>
 {% endif %}
 
-{% comment %} Submit button  {% endcomment %}
+{% comment %} Add event or see past events  {% endcomment %}
 <div class="text-center row justify-content-between">
     <a class="btn add_event_button col-md-6" href="{% url 'assistapp:show_add_event' %}">Add an Event</a>
     <a class="btn add_event_button col-md-6" href="{% url 'assistapp:show_past_events' %}">Past Events</a>

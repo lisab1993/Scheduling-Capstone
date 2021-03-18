@@ -2,29 +2,29 @@
 {% block content %}
 
 {% comment %} Name of the event the user is editing  {% endcomment %}
-<h2 class="title_text text-center mt-2 mb-4">Edit {{ event.title }}</h2>
+<h2 class="complete_title mt-2 mb-4">Edit {{ event.title }}</h2>
 
 <form action="{% url 'assistapp:edit_event' pk=event.pk %}" method="post">
   {% csrf_token %}
 
   {% comment %} Event title being edited  {% endcomment %}
   <div class="mb-3">
-    <label for="event_title" class="form-label">Event Title</label>
-    <input value="{{ event.title }}" name="title" type="text" class="form-control edit_text" id="event_title">
+    <label for="event_title" class="form-label">Event Title<span class="tiny_text align-top">*required</span></label>
+    <input value="{{ event.title }}" name="title" type="text" class="form-control edit_text" id="event_title" required>
   </div>
 
   {% comment %} Event start date being edited  {% endcomment %}
   <div class="mb-3">
-    <label for="start_date" class="form-label">Start Date</label>
+    <label for="start_date" class="form-label">Start Date<span class="tiny_text align-top">*required</span></label>
     <input value="{{ event.start_date|date:'Y-m-d\Th:i' }}" name="start_date" type="datetime-local"
-      class="form-control edit_text" id="start_date">
+      class="form-control edit_text" id="start_date" required>
   </div>
 
   {% comment %} End date being edited  {% endcomment %}
   <div class="mb-3">
-    <label for="end_date" class="form-label">End Date</label>
+    <label for="end_date" class="form-label">End Date<span class="tiny_text align-top">*required</span></label>
     <input value="{{ event.end_date|date:'Y-m-d\Th:i' }}" name="end_date" type="datetime-local"
-      class="form-control edit_text" id="end_date">
+      class="form-control edit_text" id="end_date" required>
   </div>
 
   {% comment %} Submit button  {% endcomment %}
