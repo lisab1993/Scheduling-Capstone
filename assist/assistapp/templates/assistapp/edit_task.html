@@ -8,26 +8,26 @@
     {% csrf_token %}
 
     <!-- Task Name -->
-    <div class="row mb-3 mt-4">
+    <div class="row mb-3 mt-4 ms-3 me-3">
         <label for="taskName" class="form-label">Task Name<span class="tiny_text align-top">*required</span></label>
         <input value="{{ task.name }}" name="name" type="text" class="form-control edit_text" id="taskName" required>
     </div>
 
     <!-- Due Date -->
-    <div class="row mb-3 mt-4">
+    <div class="row mb-3 mt-4 ms-3 me-3">
         <label for="dueDate" class="form-label">Due Date<span class="tiny_text align-top">*required</span></label>
         <input value="{{ task.due_date|date:'Y-m-d\Th:i' }}" name="due_date" type="datetime-local"
             class="form-control edit_text" id="dueDate" required>
     </div>
 
     <!-- Notes -->
-    <div class="row mb-3 mt-4">
+    <div class="row mb-3 mt-4 ms-3 me-3">
         <label for="taskNotes" class="form-label">Notes</label>
         <input value="{{ task.notes }}" name="notes" type="text" class="form-control edit_text" id="taskNotes">
     </div>
 
     <!-- Priority -->
-    <div class="row mb-3">
+    <div class="row mb-3 ms-3 me-3">
         <label for="taskNotes" class="form-label p-0">Priority</label>
         <select name="priority" class="form-select" aria-label="Priority Selection">
             <option {% if task.priority == "High" %} selected {% endif %} value="High">High</option>
@@ -40,10 +40,10 @@
     {% if task.image %}
     <div class="row mt-4">
         <div class="form-text col-md-6">
-            <label for="existingImage" class="form-label">Leave your current picture...</label>
+            <label for="existingImage" class="form-label w-100">Leave your current picture...</label>
             <img class="image_direct" id="existingImage" src="{{ task.image.url }}" alt="">
-            <span class="tiny_text">Remove Picture</span>
-            <input type="checkbox" name="clear_image"/>
+            <label for="clearCheckbox" class="tiny_text text-nowrap w-100">Remove Picture</label>
+            <input id="clearCheckbox" type="checkbox" name="clear_image"/>
         </div>
 
         <div class="image_divider col-md-1"></div>
@@ -55,7 +55,7 @@
             </div>   
     </div>
     {% else %}
-    <div class="row">
+    <div class="row ms-3 me-3">
     <span><label for="taskImage" class="form-label">Image</label></span>
     <input type="file" value="" name="image" class="form-control edit_text" id="taskImage" accept="image/*">
     </div>

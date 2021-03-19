@@ -4,8 +4,12 @@
 
 <!-- Task Title -->
 <h1 class="title_text text-center mt-2 mb-4">{{ event.title }}</h1>
-<div class="text-center mb-3"><a class="col-md-4 btn add_event_button text-center"
-        href="{% url 'assistapp:show_add_task' event.id  %}">Add a Task</a></div>
+
+<div class="row justify-content-around">
+    <a class="col-md-6 btn add_event_button" href="{% url 'assistapp:my_events' %}">Back to Events</a>
+    <a class="col-md-6 btn add_event_button text-center" href="{% url 'assistapp:show_add_task' event.id  %}">Add a Task</a>
+</div>
+
 
 
 {% if event.tasks.all %}
@@ -15,9 +19,9 @@
 {% if task.complete == False %}
 
 <!-- Task Name and Controls -->
-<div class="row ms-3">
+<div class="row ms-3 me-3">
     <div class="event_text col-md-5">{{ task.name }}</div class="event_text col-md-5">
-        <a class='btn col-md-3 event_button' href="{% url 'assistapp:show_edit_task' id=task.id %}">Edit Task</a>
+    <a class='btn col-md-3 event_button' href="{% url 'assistapp:show_edit_task' id=task.id %}">Edit Task</a>
     <a class="btn col-md-3 event_button" href="{% url 'assistapp:delete_task' pk=task.pk  %}">Delete Task</a>
 </div>
 
@@ -75,7 +79,7 @@
 <!-- Task name, edit, and delete buttons -->
 <div class="row">
     <div class="event_text col-md-5">{{ task.name }}</div class="event_text col-md-5">
-        <a class='btn col-md-3 event_button' href="{% url 'assistapp:show_edit_task' id=task.id %}">Edit Task</a>
+    <a class='btn col-md-3 event_button' href="{% url 'assistapp:show_edit_task' id=task.id %}">Edit Task</a>
     <a class="btn col-md-3 event_button" href="{% url 'assistapp:delete_task' pk=task.pk  %}">Delete Task</a>
 </div>
 
@@ -113,7 +117,7 @@
                 Incomplete</a>
             {% endif %}
         </div>
- 
+
     </div>
 
     <!-- Task Notes -->
@@ -129,7 +133,8 @@
 <!-- Message to show if there are no tasks for the selected event -->
 {% else %}
 <div>
-    <p class="task_text">You don't have any tasks for this event. Click on "Add a Task" to keep going, or "Help" for a tutorial.
+    <p class="task_text">You don't have any tasks for this event. Click on "Add a Task" to keep going, or "Help" for a
+        tutorial.
     </p>
 </div>
 <!-- Ends the search for existing tasks -->
