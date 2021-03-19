@@ -1,17 +1,17 @@
 {% extends 'assistapp/base.html' %}
 {% block content %}
 
-{% comment %} Page Title  {% endcomment %}
+<!-- Page Title  -->
 <h2 class="title_text text-center mt-2 mb-4">My Events</h2>
 
 {% if upcoming_dates %}
     {% for event in upcoming_dates %}
-    <div class="row">
-        {% comment %} Event titles. Clicking on them leads to the task_list.html for that event {% endcomment %}
+    <div class="row ms-3 me-3">
+        <!-- Event titles. Clicking on them leads to the task_list.html for that event -->
         <div class="col-md-5">
             <a class='event_text' href="{% url 'assistapp:task_list' event_id=event.id %}">{{event.title}}</a>
         </div>
-        {% comment %} View the event's tasks, edit the event, or delete the event  {% endcomment %}
+        <!-- View the event's tasks, edit the event, or delete the event  -->
         <a href="{% url 'assistapp:task_list' event_id=event.id %}" class="btn col-md-2 event_button">Tasks</a>
         <a href="{% url 'assistapp:show_edit_event' pk=event.pk %}" class="btn col-md-2 event_button">Edit</a>
         <a href="{% url 'assistapp:delete_event' pk=event.pk %}" class="btn col-md-2 event_button">Delete</a>
@@ -24,10 +24,10 @@
 </div>
 {% endif %}
 
-{% comment %} Add event or see past events  {% endcomment %}
+ <!-- Add event or see past events   -->
 <div class="text-center row justify-content-between">
-    <a class="btn add_event_button col-md-6" href="{% url 'assistapp:show_add_event' %}">Add an Event</a>
-    <a class="btn add_event_button col-md-6" href="{% url 'assistapp:show_past_events' %}">Past Events</a>
+    <a class="btn add_event_button col-md-6 mt-2" href="{% url 'assistapp:show_add_event' %}">Add an Event</a>
+    <a class="btn add_event_button col-md-6 mt-2" href="{% url 'assistapp:show_past_events' %}">Past Events</a>
 </div>
 
 {% endblock %}

@@ -1,17 +1,17 @@
 {% extends 'assistapp/base.html' %}
 {% block content %}
 
-{% comment %} Page Title  {% endcomment %}
+<!-- Page Title  -->
 <h2 class="title_text text-center mt-2 mb-4">Past Events</h2>
 
 
 {% for event in past_dates %}
 <div class="row">
-    {% comment %} Event titles. Clicking on them leads to the task_list.html for that event {% endcomment %}
+    <!-- Event titles. Clicking on them leads to the task_list.html for that event -->
     <div class="col-md-5">
         <a class='event_text' href="{% url 'assistapp:task_list' event_id=event.id %}">{{event.title}}</a>
     </div>
-    {% comment %} View the event's tasks, edit the event, or delete the event  {% endcomment %}
+    <!-- View the event's tasks, edit the event, or delete the event  -->
     <a href="{% url 'assistapp:task_list' event_id=event.id %}" class="btn col-md-2 event_button">Tasks</a>
     <a href="{% url 'assistapp:show_edit_event' pk=event.pk %}" class="btn col-md-2 event_button">Edit</a>
     <a href="{% url 'assistapp:delete_event' pk=event.pk %}" class="btn col-md-2 event_button">Delete</a>
@@ -19,7 +19,7 @@
 </div>
 {% endfor %}
 
-{% comment %} Submit button  {% endcomment %}
+<!-- Submit button  -->
 
 <a class="btn add_event_button" href="{% url 'assistapp:my_events' %}">Back to my events</a>
 

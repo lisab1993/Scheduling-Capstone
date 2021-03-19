@@ -11,7 +11,7 @@
 <!-- Vuetify CSS  -->
 <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
 
-{% comment %}This style tag ensure the header is consistent due to Vuetify's CSS{% endcomment %}
+<!-- This style tag ensure the header is consistent due to Vuetify's CSS -->
 <style>
     .row {
         --bs-gutter-x: 1.5rem;
@@ -54,10 +54,10 @@
 </style>
 
 <div id="app" class="mt-5">
-    <v-app id="inspire">
+    <v-app>
         <div>
             <!-- The sheet is like a container; this holds the controls at the top  -->
-            <v-sheet height="55" class="d-flex">
+            <v-sheet height="50" class="d-flex">
                 <!-- goes back to the previous month  -->
                 <v-btn icon class="ma-2" @click="$refs.calendar.prev()">
                     <v-icon>mdi-chevron-left</v-icon>

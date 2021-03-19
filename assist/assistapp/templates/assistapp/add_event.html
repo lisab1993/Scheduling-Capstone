@@ -5,25 +5,25 @@
 
 <form action="{% url 'assistapp:add_event' %}" method="post">
     {% csrf_token %}
-{% comment %} Add a title for a new event  {% endcomment %}
+<!-- Add a title for a new event  -->
 <div class="row mb-3">
   <label for="event_title" class="form-label">Event Title<span class="tiny_text align-top">*required</span></label>
   <input name="title" type="text" class="form-control" id="event_title" required>
 </div>
 
-{% comment %} Add a start date for a new event  {% endcomment %}
+<!-- Add a start date for a new event  -->
 <div class="row mb-3">
   <label for="start_date" class="form-label">Start Date<span class="tiny_text align-top">*required</span></label>
   <input name="start_date" type="datetime-local" class="form-control" id="start_date" required>
 </div>
 
-{% comment %} Add an end date for a new event  {% endcomment %}
+<!-- Add an end date for a new event  -->
 <div class="row mb-3">
   <label for="end_date" class="form-label">End Date<span class="tiny_text align-top">*required</span></label>
   <input name="end_date" type="datetime-local" class="form-control" id="end_date" required>
 </div>
 
-{% comment %} Submit button  {% endcomment %}
+<!-- Submit button  -->
 <div class="text-center row">
   <button class="text-center btn add_event_button" type="submit">Go</button>
 </div>

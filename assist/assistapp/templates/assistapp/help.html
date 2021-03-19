@@ -3,7 +3,8 @@
 
 {% block content %}
 <div class="complete_title">Welcome to Assist!</div>
-<p class="task_text">
+
+<p class="task_text row">
     The first thing you need to do to get started, is to add an event.
     Events are the primary job you need to do. It could be grocery shopping,
     spring cleaning, packing for a trip, or even planning a party! Each event
@@ -28,12 +29,17 @@
     You will have the same control over past events (and their tasks) as
     you do with new and upcoming events.
     <br><br>
-    This is an event:
-    <br>
-    <img class="help_image mt-2" src="{% static 'assistapp/images/events_screenshot.PNG' %}" alt="M">
-    <br><br>
-    This is a task:
-    <br>
-    <img class="help_image mt-2" src="{% static 'assistapp/images/tasks_screenshot.PNG' %}" alt="">
 </p>
+
+
+<div class="row">
+    <p class="task_text">This is an event:</p>
+    <br>
+    <img class="help_image" src="{% static 'assistapp/images/events_screenshot.PNG' %}" alt="M">
+    <br><br>
+    <p class="task_text mt-5">This is a task:</p>
+    <br>
+    <img class="help_image" src="{% static 'assistapp/images/tasks_screenshot.PNG' %}" alt="">
+</div>
+
 {% endblock %}

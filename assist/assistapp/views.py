@@ -5,10 +5,9 @@ from django.contrib.auth import authenticate
 from .models import Event, EventTask
 from django.contrib.auth.models import User
 from datetime import datetime
-import pytz, datetime
+import pytz
+import datetime
 from django.utils import timezone
-
-
 
 
 # Event-related views
@@ -25,8 +24,7 @@ def my_events(request):
     for event in user_events:
         if event.end_date >= today:
             upcoming_dates.append(event)
-    return render(request, 'assistapp/my_events.html', {'upcoming_dates':upcoming_dates})
-
+    return render(request, 'assistapp/my_events.html', {'upcoming_dates': upcoming_dates})
 
 
 @login_required
@@ -89,13 +87,12 @@ def show_past_events(request):
     user = authenticate(username=request.user, password=request.user)
     logged_in = request.user
     today = timezone.now()
-    print(today)
     past_dates = []
     user_events = Event.objects.filter(user=logged_in).order_by('start_date')
     for event in user_events:
         if event.end_date < today:
             past_dates.append(event)
-    return render(request, 'assistapp/past_events.html', {'past_dates':past_dates})
+    return render(request, 'assistapp/past_events.html', {'past_dates': past_dates})
 
 
 #########################################################
@@ -132,7 +129,8 @@ def add_task(request, event_id):
         priority = request.POST['priority']
         notes = request.POST['notes']
         image = request.FILES.get('image')
-        task = EventTask(name=name, due_date=due_date, notes=notes, image=image, priority=priority, event_id=event_id)
+        task = EventTask(name=name, due_date=due_date, notes=notes,
+                         image=image, priority=priority, event_id=event_id)
         task.save()
         return HttpResponseRedirect(reverse('assistapp:task_list', args=[event_id]))
 
@@ -175,6 +173,7 @@ def edit_task(request, id):
     task.save()
     return redirect('assistapp:task_list', event_id=task.event_id)
 
+
 @login_required
 def complete_task(request, id):
     '''Mark a task as complete'''
@@ -182,6 +181,7 @@ def complete_task(request, id):
     task.complete = True
     task.save()
     return HttpResponseRedirect(reverse('assistapp:task_list', args=[task.event_id]))
+
 
 def reverse_complete_task(request, id):
     '''Mark a task as complete'''
@@ -227,6 +227,8 @@ def get_events(request):
 
 #################################################
 # Help Page
+
+
 @login_required
 def show_help(request):
     '''Displays the help page'''

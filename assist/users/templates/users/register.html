@@ -2,41 +2,45 @@
 
 
 {% block content %}
-<h1>Create an Account</h1>
+<div class='title_text'>Create an Account</div>
 
-
-{% comment %} Check if the error message from views was displayed {% endcomment %}
+<!-- An error message will display if there are any issues signing up -->
 {% if message %}
-<div class='warning-message' id='errorPassword'>
+<div class='task_text' id='errorPassword'>
     {{ message }}
 </div>
 {% endif %}
-{% comment %} Empty div to show an error message if the passwords don't match{% endcomment %}
+<!-- If the passwords don't match, the JS at the bottom will display an error message -->
 <div id='errorPassword' style='display:none'>
 </div>
 
-
 <form action="{% url 'users:register_user' %}" method='post'>
     {% csrf_token %}
+
+    <!-- Username field -->
     <div class='row mb-3'>
         <label for='inputUsername' class='form-label'>Please Enter Your Username</label>
         <input type='text' name='username' class='form-control' id='inputUsername'
             aria-describedby='Please enter your username.'>
     </div>
 
+    <!-- Password field -->
     <div class='row mb-3'>
         <label for='inputPassword' class='form-label'>Please Enter Your Password</label>
         <input type='password' name='password' class='form-control' id='inputPassword'
             aria-describedby='Please enter your password.'>
     </div>
 
+    <!-- Re-type password field -->
     <div class='row mb-3'>
         <label for='verifyPassword' class='form-label'>Please Re-Enter Your Password</label>
         <input type='password' class='form-control' id='verifyPassword' aria-describedby='Please enter your password.'>
     </div>
+
+    <!-- Register button and link to login page -->
     <div class="row">
         <button type='submit' id="goButton" class='btn login_button col-md-2'>Go</button>
-        <span class="col-md-6 clear_picture">Already have an account? Login <a class="link" href="{% url 'users:login_page' %}">here</a></span>
+        <span class="col-md-6 task_text">Already have an account? Login <a class="link" href="{% url 'users:login_page' %}">here</a></span>
     </div>
 </form>
 
@@ -53,12 +57,9 @@
         if (input_initial_password.value != input_verified_password.value) {
             error_password.innerText = "The passwords don't match"
             error_password.style.display = ''
-            event.preventDefault()
-            
+            event.preventDefault() 
         }
     })
-    
 </script>
-
 
 {% endblock %}

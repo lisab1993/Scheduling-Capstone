@@ -27,6 +27,7 @@ def register_user(request):
 
     # create the user with their username and password
     user = User.objects.create_user(username=username, password=password)
+    
     # return to the login page
     return HttpResponseRedirect(reverse('users:login_page'))
 

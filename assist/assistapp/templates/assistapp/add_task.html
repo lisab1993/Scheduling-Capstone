@@ -4,25 +4,25 @@
 <div class="complete_title text-center my-3">Add a task to {{event.title}}</div>
 <form action="{% url 'assistapp:add_task' event.id %}" method='post' enctype="multipart/form-data">
     {% csrf_token %}
-    {% comment %} Name your task  {% endcomment %}
+    <!-- Name your task  -->
     <div class="mb-3 row">
         <label for="taskName" class="form-label p-0">Task Name<span class="tiny_text align-top">*required</span></label>
         <input name="name" type="text" class="form-control" id="taskName" required>
     </div>
 
-    {% comment %} Task due date  {% endcomment %}
+    <!-- Task due date  -->
     <div class="mb-3 row">
         <label for="dueDate" class="form-label p-0">Due Date<span class="tiny_text align-top">*required</span></label>
         <input name="due_date" type="datetime-local" class="form-control" id="dueDate" required>
     </div>
 
-    {% comment %} Task notes  {% endcomment %}
+    <!-- Task notes  -->
     <div class="mb-3 row">
         <label for="taskNotes" class="form-label p-0">Notes</label>
         <input name="notes" type="text" class="form-control" id="taskNotes">
     </div>
 
-    {% comment %} Priority selection  {% endcomment %}
+    <!-- Priority selection  -->
     <div class="mb-3 row">
         <label for="taskNotes" class="form-label p-0">Priority</label>
         <select name="priority" class="form-select" aria-label="Priority Selection">
@@ -32,13 +32,13 @@
         </select>
     </div>
 
-    {% comment %} Image selection  {% endcomment %}
+    <!-- Image selection  -->
     <div class="mb-3 row">
         <label for="taskImage" class="form-label p-0">Image</label>
         <input name="image" type="file" accept="image/*" class="form-control" id="taskImage">
     </div>
 
-    {% comment %} Submit button  {% endcomment %}
+    <!-- Submit button  -->
     <div class="row">
         <button class="btn add_event_button col-md-2" type="submit">Add</button>
     </div>

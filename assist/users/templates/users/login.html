@@ -3,6 +3,7 @@
 
 <div class="title_text">Login</div>
 
+<!-- An error message will display if there are any issues logging in -->
 {% if message %}
 <div class="row task_text">{{ message }}</div>
 {% endif %}
@@ -10,16 +11,19 @@
 <form action="{% url 'users:login_user' %}" method='post'>
     {% csrf_token %}
 
+    <!-- Username field in form  -->
     <div class="mb-3 row">
         <label class="form-label p-0" for="username">Please enter your username</label>
         <input class="form-control" type="text" name='username' id='username'>
     </div>
 
+    <!-- Password field in form -->
     <div class="mb-3 row">
         <label class="form-label p-0" for="password">Please enter your password</label>
         <input class="form-control " type="password" name='password' id='password'>
     </div>
 
+    <!-- Login button and link to registration page -->
     <div class="mb-3 row">
         <button type='submit' class="btn login_button col-md-2">Login</button>
         <span class="col-md-6 tiny_text">Don't have an account? Create one <a class="link"

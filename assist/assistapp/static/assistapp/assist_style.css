@@ -3,13 +3,14 @@ header {
     background-size: cover;
     border-top: 1px solid slategray;
     border-bottom: 1px solid slategray;
-
 }
 
 body, html {
     min-height: 100vh;
     background-image: url('images/whiteMarble.jfif');
     background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 label {
@@ -65,7 +66,6 @@ label {
     color: #ac8591e3;
 }
 
-
 /* buttons in the base header; also used in login/logout  */
 .header_button {
     font-family: 'RocknRoll One', sans-serif !important;
@@ -118,12 +118,27 @@ label {
     color: black;
 }
 
+.event_text:hover {
+    text-decoration: none;
+    font-family: 'RocknRoll One', sans-serif;
+    font-size: 22px;
+    color: #68a768;
+}
+
 /* Task list text  */
 .task_text {
     font-family: 'RocknRoll One', sans-serif;
     font-size: 15px;
     text-align: center;
 }
+
+/* Clears the picture on edit_task.html */
+.tiny_text {
+    font-family: 'Paprika', cursive !important;
+    color: rgb(0, 0, 0);
+    font-size: 13px;
+}
+
 
         /* Misc.  */
 /* Controls how the image appears  */
@@ -136,10 +151,12 @@ label {
     text-align: center; 
 }
 
+/* Pictures on the help page */
 .help_image {
-    max-width: 800px;
+    max-width: 400px;
     border: 1px solid lightgray;
     border-radius: 5px;
+    margin: 0 auto;
 }
 
 /* The box around the details within the task_list.html template  */
@@ -150,17 +167,20 @@ label {
     width: 350px;
 }
 
+.note_box {
+    border: 1px solid slategray;
+    border-radius: 5px;
+    padding: 10px;
+    width: 350px;
+    margin-left: 5px;
+    width: 560px;
+
+}
+
 /* The vertical line on edit_task.html  */
 .image_divider {
     border-left: 1px solid black;
     max-height: 500px;
-}
-
-/* Clears the picture on edit_task.html */
-.tiny_text {
-    font-family: 'Paprika', cursive !important;
-    color: rgb(0, 0, 0);
-    font-size: 13px;
 }
 
 /* Used for links in <a></a>  */
@@ -169,6 +189,7 @@ label {
     color: #9b5188;
     font-weight: bold;
 }
+
 .link:hover {
     text-decoration: none;
     color: #68a768;
@@ -197,8 +218,15 @@ label {
     box-shadow: 5px 5px #26351a5b
 }
 
+/* There's a blank div in the top of the header for spacing purposes */
 .blank_div {
     height: 0 !important;
+}
+
+/* The notes section of the task list */
+.note_box {
+    border: 1px solid slategray;
+    border-radius: 5px;
 }
 
          /* Buttons (header buttons are in the header section) */
@@ -219,6 +247,7 @@ label {
     box-shadow: 5px 5px #352c1a5b
 }
 
+/* Displayed on the login page under the users app */
 .login_button {
     font-family: 'RocknRoll One', sans-serif !important;
     background-color: rgb(218, 184, 32);
