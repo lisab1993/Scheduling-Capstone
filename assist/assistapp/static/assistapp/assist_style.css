@@ -3,12 +3,12 @@ header {
     background-size: cover;
     border-top: 1px solid slategray;
     border-bottom: 1px solid slategray;
+
 }
 
 body, html {
-    overflow: auto;
     min-height: 100vh;
-    background-image: url('images/background.webp');
+    background-image: url('images/whiteMarble.jfif');
     background-size: cover;
 }
 
@@ -26,21 +26,45 @@ label {
     font-family: 'Paprika', cursive;
     font-size: 20px;
     font-weight: bold;
+    text-align: center;
 }
 
 /* Sets the header to full width */
 .header_container {
     width: 100% !important;
     padding: 0 !important;
+    margin: 0 !important;
 }
 
 /* App name */
 .assist_logo {
     font-family: 'Macondo Swash Caps', cursive;
     font-size: 50px;
-    margin-left: 50px;
+    padding-left: 50px;
     font-style: italic;
+    text-decoration: none;
+    color: black;
+    max-width: 300px;
 }
+
+.assist_logo:focus {
+    font-family: 'Macondo Swash Caps', cursive;
+    font-size: 50px;
+    padding-left: 50px;
+    font-style: italic;
+    text-decoration: none;
+    color: #94707be3;
+}
+
+.assist_logo:hover {
+    font-family: 'Macondo Swash Caps', cursive;
+    font-size: 50px;
+    padding-left: 50px;
+    font-style: italic;
+    text-decoration: none;
+    color: #ac8591e3;
+}
+
 
 /* buttons in the base header; also used in login/logout  */
 .header_button {
@@ -52,7 +76,7 @@ label {
     border-radius: 5px !important;
     height: 40px !important;
     text-align: center !important;
-    box-shadow: 5px 5px #26351a5b
+    box-shadow: 5px 5px #26351a5b;
 }
 
 .header_button:hover {
@@ -64,7 +88,7 @@ label {
     border-radius: 5px !important;
     height: 40px !important;
     text-align: center !important;
-    box-shadow: 5px 5px #26351a5b
+    box-shadow: 5px 5px #26351a5b;
 }
 
 
@@ -114,6 +138,8 @@ label {
 
 .help_image {
     max-width: 800px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
 }
 
 /* The box around the details within the task_list.html template  */
@@ -226,4 +252,29 @@ label {
     margin-left: auto;
     margin-right: auto;
     display: block;
+}
+
+.logout_button {
+    font-family: 'RocknRoll One', sans-serif !important;
+    background-color: #fdc7d7e3 !important;
+    color: black !important;
+    text-decoration: none !important;
+    border: 1px solid #26351a5b !important;
+    border-radius: 5px !important;
+    height: 40px !important;
+    text-align: center !important;
+    box-shadow: 5px 5px #26351a5b;
+    margin-right: 50px;
+}
+
+.logout_button:hover {
+    font-family: 'RocknRoll One', sans-serif !important;
+    background-color: #ac8591e3 !important;
+    color: black !important;
+    text-decoration: none !important;
+    border: 1px solid #26351a5b !important;
+    border-radius: 5px !important;
+    height: 40px !important;
+    text-align: center !important;
+    box-shadow: 5px 5px #26351a5b;
 }

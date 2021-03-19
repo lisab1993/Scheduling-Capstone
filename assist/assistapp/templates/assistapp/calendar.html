@@ -4,13 +4,52 @@
 
 {% block content %}
 
+<!-- Custom CSS  -->
+<link rel="stylesheet" href="{% static 'assistapp/assist_style.css' %}">
 <!-- Vuetify Icons  -->
 <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
 <!-- Vuetify CSS  -->
 <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
-<!-- Custom CSS  -->
-<link rel="stylesheet" href="{% static 'assistapp/assist_style.css' %}">
 
+{% comment %}This style tag ensure the header is consistent due to Vuetify's CSS{% endcomment %}
+<style>
+    .row {
+        --bs-gutter-x: 1.5rem;
+    }
+
+    .header_button {
+        padding-top: 7px;
+    }
+
+    .logout_button {
+        padding-top: 7px;
+    }
+
+    .welcome_text {
+        width: auto;
+    }
+
+    .v-select.v-input--dense .v-select__selection--comma {
+        font-family: 'Paprika', cursive; 
+    }
+
+    .v-list-item__title {
+        font-family: 'Paprika', cursive; 
+    }
+
+    .header_container {
+        margin-top: 21px !important;
+    }
+
+    .assist_logo {
+        margin-top: 12px;
+    }
+
+    header {
+        min-height: 185px !important;
+    }
+
+</style>
 
 <div id="app" class="mt-5">
     <v-app id="inspire">
@@ -21,7 +60,7 @@
                 <v-btn icon class="ma-2" @click="$refs.calendar.prev()">
                     <v-icon>mdi-chevron-left</v-icon>
                 </v-btn>
-                
+
                 <!-- Select dropdown; defaults to type month; populates with types  -->
                 <v-select v-model="type" :items="types" dense outlined hide-details class="ma-2" label="type">
                 </v-select>
@@ -45,8 +84,7 @@
                 <!-- @ is shorthand for v-on  -->
                 <!-- v-on change listens for a change on the v-model.  -->
                 <v-calendar ref="calendar" v-model="value" :weekdays="weekday" :type="type" :events="events"
-                      :event-color="getEventColor"
-                    @change="getEvents"></v-calendar>
+                    :event-color="getEventColor" @change="getEvents"></v-calendar>
             </v-sheet>
         </div>
     </v-app>
