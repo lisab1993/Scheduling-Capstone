@@ -29,10 +29,10 @@
   <div class="container-fluid p-0">
     {% comment %}Loged in users will see this{% endcomment %}
     {% if user.is_authenticated %}
-    <div class="row mt-3 justify-content-between">
-      <div class="col-md-3 welcome_text p-0">Welcome {{ user }}</div>
-      <div class="col-md-3"></div>
-      <a class="col-md-3 btn logout_button" href="{% url 'users:logout_user' %}">Logout</a>
+    <div class="row mt-3 justify-content-around">
+      <div class="col-md-3 welcome_text p-0 ">Welcome {{ user }}</div>
+      <div class="col-md-3 blank_div"></div>
+      <a class="col-md-3 btn header_button" href="{% url 'users:logout_user' %}">Logout</a>
     </div>
     {% endif %}
 
@@ -44,7 +44,7 @@
             <a href="{% url 'assistapp:my_events' %}" class="assist_logo">Assist</a>
           </div>
           {% comment %} Calendar, My Events, and Help buttons {% endcomment %}
-          <div class="row justify-content-around mt-5">
+          <div class="row justify-content-around mt-5 ps-5">
             <a class="btn col-md-3 header_button mb-3" href="{% url 'assistapp:show_calendar' %}">Calendar</a>
             <a class="btn col-md-3 header_button mb-3" href="{% url 'assistapp:my_events' %}">My Events</a>
             <a class="btn col-md-3 header_button mb-3" href="{% url 'assistapp:show_help' %}">Help</a>

@@ -163,7 +163,6 @@ label {
     font-size: 13px;
 }
 
-
 /* Used for links in <a></a>  */
 .link {
     text-decoration: none;
@@ -196,6 +195,10 @@ label {
     background-color: #ffffff;
     font-family: 'Paprika', cursive;  
     box-shadow: 5px 5px #26351a5b
+}
+
+.blank_div {
+    height: 0 !important;
 }
 
          /* Buttons (header buttons are in the header section) */
@@ -252,29 +255,4 @@ label {
     margin-left: auto;
     margin-right: auto;
     display: block;
-}
-
-.logout_button {
-    font-family: 'RocknRoll One', sans-serif !important;
-    background-color: #fdc7d7e3 !important;
-    color: black !important;
-    text-decoration: none !important;
-    border: 1px solid #26351a5b !important;
-    border-radius: 5px !important;
-    height: 40px !important;
-    text-align: center !important;
-    box-shadow: 5px 5px #26351a5b;
-    margin-right: 50px;
-}
-
-.logout_button:hover {
-    font-family: 'RocknRoll One', sans-serif !important;
-    background-color: #ac8591e3 !important;
-    color: black !important;
-    text-decoration: none !important;
-    border: 1px solid #26351a5b !important;
-    border-radius: 5px !important;
-    height: 40px !important;
-    text-align: center !important;
-    box-shadow: 5px 5px #26351a5b;
 }
